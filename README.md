@@ -14,4 +14,9 @@ python -m pip install git+https://github.com/j4asper/dmr.py
 ```
 
 ## Contributing:
-I would be more than happy if those who know how to make pull requests, contribute with code!
+I would be more than happy if those who know how to make pull requests, contribute with code!  
+
+## ToDo
+- [ ] Add from_json and to_json functions  
+- [ ] Add documentation with all possible values
+- [ ] Scrape more parts of the DMR site to get even more data
