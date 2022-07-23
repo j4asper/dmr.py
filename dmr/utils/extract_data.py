@@ -6,7 +6,7 @@ def page_1(source):
     data["type"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[3]/span[2]')[0].text_content()
     data["last_update"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[4]/span[2]')[0].text_content().replace(" d. ", "")
     data["registration_number"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[2]/div/div[1]/span[2]')[0].text_content()
-    data["first_registration"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[2]/div/div[2]/span[2]')[0].text_content()
+    data["first_registration"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[4]/div/div[2]/div[1]/div[2]/span')[0].text_content()
     data["use"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[2]/div/div[3]/span[2]')[0].text_content()
     data["color"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[4]/div/div[1]/div[3]/div[2]/span')[0].text_content()
     data["model_year"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[4]/div/div[1]/div[4]/div[2]/span')[0].text_content()
