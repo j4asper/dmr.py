@@ -15,7 +15,7 @@ def scrape(licens_plate):
             return token, url
         except (TypeError, KeyError):
             raise Exception("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
-    
+
     with Session() as session:
         # Get dmrFormToken required to make site requests and get url to post data
         token, new_url = get_token(session)
@@ -35,7 +35,7 @@ def scrape(licens_plate):
 
         source = fromstring(resp.text)
         data = page_1(source)
-        
+
         second_page = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[1]/ul/li[2]/div/a')[0].get("href")
 
         resp = session.get("https://motorregister.skat.dk" + second_page, headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url[:-16]}), allow_redirects=True)

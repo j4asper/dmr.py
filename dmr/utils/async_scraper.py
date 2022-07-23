@@ -16,7 +16,7 @@ async def scrape_async(licens_plate):
             return token, url
         except (TypeError, KeyError):
             raise Exception("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
-    
+
     async with ClientSession() as session:
         # Get dmrFormToken required to make site requests and get url to post data
         token, new_url = await get_token(session)
