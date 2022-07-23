@@ -1,6 +1,7 @@
 # dmr.py  
 [![Stable Version](https://img.shields.io/pypi/v/dmr.py?color=blue)](https://pypi.org/project/dmr.py/)
 [![Downloads](https://img.shields.io/pypi/dm/dmr.py)](https://pypistats.org/packages/dmr.py)  
+You will no longer need an exspensive API for danish licens plate lookups with dmr.py, this tool scrapes motorregister.skat.dk directly and returns the data for you to use in your application.  
 
 ## Installation:  
 Install with pip
@@ -19,4 +20,7 @@ I would be more than happy if those who know how to make pull requests, contribu
 ## ToDo
 - [ ] Add from_json and to_json functions  
 - [ ] Add documentation with all possible values
-- [ ] Scrape more parts of the DMR site to get even more data
+- [ ] Scrape more parts of the DMR site to get even more data. 
+
+## Issue we can't do anything about.  
+If you have used this tool, you might notice that it is slow AF. That is probably due to our government using multiple 80-100 GB XML files as the databse for all vehicles in Denmark. It roughly takes about 3 seconds to do a lookup on the DMR site.
