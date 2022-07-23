@@ -1,7 +1,7 @@
 from .utils import scrape_async, scrape
 
 class DMR:
-    def __init__(self, make=None, model=None, variant=None, type=None, color=None, total_weight=None, vin=None, last_update=None, licens_plate=None, first_registration=None, use=None, model_year=None, vehicle_weight=None, propulsion=None, tow_bar=None, fuel_consumption=None, cylinders=None, plugin_hybrid=None, electricity_consumption=None, electric_range=None, battery_capacity=None, body_type=None):
+    def __init__(self, make=None, model=None, variant=None, type=None, color=None, total_weight=None, vin=None, last_update=None, licens_plate=None, first_registration=None, use=None, model_year=None, vehicle_weight=None, propulsion=None, tow_bar=None, fuel_consumption=None, cylinders=None, plugin_hybrid=None, electricity_consumption=None, electric_range=None, battery_capacity=None, body_type=None, raw_data=None):
         self.make = make
         self.model = model
         self.variant = variant
