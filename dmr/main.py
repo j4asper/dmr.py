@@ -26,11 +26,10 @@ class DMR:
         self.battery_capacity = battery_capacity
         self.body_type = body_type
         
-        self.raw_data = None
+        self.raw_data = raw_data
 
     def __from_dict(self, data):
         # MAKE DATETIME OBJECT last_update and first_registration
-        print(data)
         return DMR(
             make=data["make"],
             model=data["model"],
