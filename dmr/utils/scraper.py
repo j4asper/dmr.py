@@ -1,6 +1,7 @@
 from requests import Session
 from lxml.html import fromstring
 from .headers import get_headers
+from .clean_data import clean
 from .extract_data import *
 
 def scrape(licens_plate):
@@ -30,7 +31,7 @@ def scrape(licens_plate):
 
         if "Ingen køretøjer fundet." in resp.text:
             # Licens plate doesn't exist
-            return None #####################################################################3
+            return None
 
         source = fromstring(resp.text)
         data = page_1(source)
@@ -42,9 +43,4 @@ def scrape(licens_plate):
         source = fromstring(resp.text)
         data.update(page_2(source))
 
-    values_to_remove = ["-", "- km/l", "- Wh/Km"]
-    for key, value in data.items():
-        if any(val_to_remove in value for val_to_remove in values_to_remove):
-            data[key] = None
-
-    return data
+    return clean(data)

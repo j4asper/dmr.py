@@ -1,6 +1,7 @@
 from aiohttp import ClientSession
 from lxml.html import fromstring
 from .headers import get_headers
+from .clean_data import clean
 from .extract_data import *
 
 async def scrape_async(licens_plate):
@@ -32,7 +33,7 @@ async def scrape_async(licens_plate):
 
         if "Ingen køretøjer fundet." in content:
             # Licens plate doesn't exist
-            return None #####################################################################3
+            return None
 
         source = fromstring(content)
 
@@ -45,9 +46,4 @@ async def scrape_async(licens_plate):
         source = fromstring(content)
         data.update(page_2(source))
 
-    values_to_remove = ["-", "- km/l", "- Wh/Km"]
-    for key, value in data.items():
-        if any(val_to_remove in value for val_to_remove in values_to_remove):
-            data[key] = None
-
-    return data
+    return clean(data)
