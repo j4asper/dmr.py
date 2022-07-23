@@ -11,5 +11,5 @@ def clean(data):
         if value == "Ukendt":
             data[key] = None
         if key == "last_update" or key == "first_registration":
-            data[key] = datetime.strptime("%d-%m-%Y")
+            data[key] = datetime.strptime(value, "%d-%m-%Y")
     return data
