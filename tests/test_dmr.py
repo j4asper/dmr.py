@@ -1,4 +1,5 @@
 from datetime import datetime
+from time import sleep
 from dmr import DMR
 
 def test_get_by_plate():
@@ -103,3 +104,9 @@ def test_get_by_plate():
         assert dmr_obj.vin == expected_data[licens_plate]["vin"]
         assert dmr_obj.type == expected_data[licens_plate]["type"]
         assert dmr_obj.plugin_hybrid == expected_data[licens_plate]["plugin_hybrid"]
+        
+        sleep(3)
+    
+    # Test non-existing license plate
+    dmr_obj = DMR().get_by_plate(license_plate="GGGGGGG")
+    assert dmr_obj == None
