@@ -61,6 +61,19 @@ def test_get_by_plate():
             "type": "Personbil",
             "plugin_hybrid": False,
         },
+        "ap22698": {
+            "make": "Fiat",
+            "propulsion": "Diesel",
+            "fuel_consumption": 14.7,
+            "tow_bar": True,
+            "vehicle_weight": None,
+            "total_weight": 2973,
+            "particle_filter": True,
+            "first_registration": datetime(2014, 12, 23, 0, 0),
+            "vin": "ZFA27000064355698",
+            "type": "Varebil",
+            "plugin_hybrid": None,
+        },
     }
     
     for licens_plate in expected_data.keys():
