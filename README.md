@@ -41,6 +41,8 @@ vehicle = await DMR().get_by_plate_async(licens_plate)
 print("The vehicle make is:", vehicle.make)
 ```
 
+**All attributes to the DMR() object [can be viewed in the Wiki](https://github.com/j4asper/dmr.py/wiki/DMR-Attributes 'Click here to go to the Wiki')**
+
 ## Contributing:
 I would be more than happy if those who know how to make pull requests, contribute with code!  
 
