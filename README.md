@@ -19,7 +19,7 @@ I would be more than happy if those who know how to make pull requests, contribu
 
 ## ToDo
 - [ ] Add from_json and to_json functions  
-- [ ] Add documentation with all possible values
+- [x] Add documentation with all possible values
 - [ ] Scrape more parts of the DMR site to get even more data. 
 
 ## Issue we can't do anything about.  
