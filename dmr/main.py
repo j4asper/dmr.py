@@ -62,6 +62,9 @@ class DMR:
             raw_data=data,
         )
 
+    def validate_license_plate(self, license_plate):
+        return len(license_plate) > 7 or len(license_plate) < 2
+    
     def to_dict(self):
         """Get JSON version of the object with object attributes as keys, and corresponding values.
 
@@ -86,11 +89,10 @@ class DMR:
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
 
         data = scrape(license_plate)
-        if data == None:
-            return None
-        else:
+        if data != None:
             dmr_obj = self.__from_dict(data)
             return dmr_obj
+        return None
 
     async def get_by_plate_async(self, license_plate:str):
         """Get data from DMR asynchronously by license plate.
@@ -108,8 +110,7 @@ class DMR:
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
         
         data = await scrape_async(license_plate)
-        if data == None:
-            return None
-        else:
+        if data != None:
             dmr_obj = self.__from_dict(data)
             return dmr_obj
+        return None
