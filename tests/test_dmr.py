@@ -2,111 +2,189 @@ from datetime import datetime
 from time import sleep
 from dmr import DMR
 
+def test_validate_license_plate():
+    """Test license plate validator"""
+    is_license_plate = DMR().validate_license_plate("GGGGGGG")
+    assert is_license_plate == True
+    
+    is_license_plate = DMR().validate_license_plate("ThisIsNotReal")
+    assert is_license_plate == False
+
 def test_get_by_plate():
     """Tests the scraper by getting data from a list of licens plates and check with the expected values"""
 
-    # Plate 1: Benzin car
-    # Plate 2: Electric
-    # Plate 3: Plug-in Hybrid
+    # Test non-existing license plate
+    dmr_obj = DMR().get_by_plate(license_plate="GGGGGGG")
+    assert dmr_obj == None
 
     expected_data = {
         "cw87553": {
             "make": "Suzuki",
-            "propulsion": "Benzin",
-            "fuel_consumption": 15.4,
-            "tow_bar": False,
-            "vehicle_weight": 950,
-            "total_weight": 1475,
-            "particle_filter": False,
-            "first_registration": datetime(2005, 8, 22, 0, 0),
+            "model": "Swift",
+            "variant": "1,5",
             "vin": "TSMMZC21S00122899",
             "type": "Personbil",
+            "last_update": datetime(2021, 1, 15, 0, 0),
+            "registration_number": "CW87553",
+            "first_registration": datetime(2005, 8, 22, 0, 0),
+            "use": "Privat personkørsel",
+            "vehicle_id": 1025401200519987,
+            "color": None,
+            "model_year": None,
+            "total_weight": 1475,
+            "vehicle_weight": 950,
+            "propulsion": "Benzin",
+            "tow_bar": False,
+            "fuel_consumption": 15.4,
+            "cylinders": None,
             "plugin_hybrid": None,
+            "electricity_consumption": None,
+            "electric_range": None,
+            "battery_capacity": None,
+            "body_type": None,
+            "particle_filter": False,
+            "doors": None,
         },
         "ap43115": {
             "make": "Tesla",
-            "propulsion": "El",
-            "fuel_consumption": None,
-            "tow_bar": False,
-            "vehicle_weight": None,
-            "total_weight": 2590,
-            "particle_filter": None,
-            "first_registration": datetime(2014, 12, 1, 0, 0),
+            "model": "Model s",
+            "variant": "85p",
             "vin": "5YJSA6H13EFP52466",
             "type": "Personbil",
+            "last_update": datetime(2014, 12, 1, 0, 0),
+            "registration_number": "AP43115",
+            "first_registration": datetime(2014, 12, 1, 0, 0),
+            "use": "Privat personkørsel",
+            "vehicle_id": 9000000000998775,
+            "color": "Sort",
+            "model_year": 2014,
+            "total_weight": 2590,
+            "vehicle_weight": None,
+            "propulsion": "El",
+            "tow_bar": False,
+            "fuel_consumption": None,
+            "cylinders": 0,
             "plugin_hybrid": None,
+            "electricity_consumption": 181.0,
+            "electric_range": None,
+            "battery_capacity": None,
+            "body_type": "Hatchback",
+            "particle_filter": None,
+            "doors": 5,
         },
         "dd24506": {
             "make": "Mg",
-            "propulsion": "Benzin",
-            "fuel_consumption": 66.7,
-            "tow_bar": False,
-            "vehicle_weight": None,
-            "total_weight": 2196,
-            "particle_filter": False,
-            "first_registration": datetime(2021, 9, 16, 0, 0),
+            "model": "Ehs plug-in hybrid",
+            "variant": "1.5 5-dørs aut. 6",
             "vin": "LSJA24397MN069226",
             "type": "Personbil",
+            "last_update": datetime(2021, 9, 16, 0, 0),
+            "registration_number": "DD24506",
+            "first_registration": datetime(2021, 9, 16, 0, 0),
+            "use": "Privat personkørsel",
+            "vehicle_id": 9000000004179000,
+            "color": "Sort",
+            "model_year": 2021,
+            "total_weight": 2196,
+            "vehicle_weight": None,
+            "propulsion": "Benzin",
+            "tow_bar": False,
+            "fuel_consumption": 66.7,
+            "cylinders": 4,
             "plugin_hybrid": True,
+            "electricity_consumption": 198.3,
+            "electric_range": 52.0,
+            "battery_capacity": 12.5,
+            "body_type": "Hatchback",
+            "particle_filter": False,
+            "doors": 5,
         },
         "cy41511": {
             "make": "Toyota",
-            "propulsion": "Brint",
-            "fuel_consumption": None,
-            "tow_bar": False,
-            "vehicle_weight": None,
-            "total_weight": 2415,
-            "particle_filter": False,
-            "first_registration": datetime(2021, 3, 9, 0, 0),
+            "model": "Mirai",
+            "variant": "1.8 brint-hybrid sedan aut. gear",
             "vin": "JTDAABAA80A000567",
             "type": "Personbil",
+            "last_update": datetime(2021, 3, 9, 0, 0),
+            "registration_number": "CY41511",
+            "first_registration": datetime(2021, 3, 9, 0, 0),
+            "use": "Privat personkørsel",
+            "vehicle_id": 9000000003963744,
+            "color": "Blå",
+            "model_year": 2021,
+            "total_weight": 2415,
+            "vehicle_weight": None,
+            "propulsion": "Brint",
+            "tow_bar": False,
+            "fuel_consumption": None,
+            "cylinders": 0,
             "plugin_hybrid": False,
+            "electricity_consumption": None,
+            "electric_range": None,
+            "battery_capacity": None,
+            "body_type": "Sedan  ",
+            "particle_filter": False,
+            "doors": 4,
         },
         "ap22698": {
             "make": "Fiat",
-            "propulsion": "Diesel",
-            "fuel_consumption": 14.7,
-            "tow_bar": True,
-            "vehicle_weight": None,
-            "total_weight": 2973,
-            "particle_filter": True,
-            "first_registration": datetime(2014, 12, 23, 0, 0),
+            "model": "Scudo",
+            "variant": "2.0 mjt 165 kassevogn",
             "vin": "ZFA27000064355698",
             "type": "Varebil",
+            "last_update": datetime(2014, 12, 23, 0, 0),
+            "registration_number": "AP22698",
+            "first_registration": datetime(2014, 12, 23, 0, 0),
+            "use": "Godstransport privat/erhverv",
+            "vehicle_id": 9000000001018398,
+            "color": None,
+            "model_year": 2011,
+            "total_weight": 2973,
+            "vehicle_weight": None,
+            "propulsion": "Diesel",
+            "tow_bar": True,
+            "fuel_consumption": 14.7,
+            "cylinders": 4,
             "plugin_hybrid": None,
+            "electricity_consumption": None,
+            "electric_range": None,
+            "battery_capacity": None,
+            "body_type": None,
+            "particle_filter": True,
+            "doors": 3,
         },
         "ca20548": {
             "make": "Yamaha",
-            "propulsion": "Benzin",
-            "fuel_consumption": None,
-            "tow_bar": False,
-            "vehicle_weight": 198,
-            "total_weight": 395,
-            "particle_filter": None,
-            "first_registration": datetime(2000, 8, 3, 0, 0),
+            "model": "Yzf",
+            "variant": "R 1",
             "vin": "TP1224102800",
             "type": "Motorcykel",
+            "last_update": datetime(2019, 3, 16, 0, 0),
+            "registration_number": "CA20548",
+            "first_registration": datetime(2000, 8, 3, 0, 0),
+            "use": "Privat personkørsel",
+            "vehicle_id": 9000000002356860,
+            "color": None,
+            "model_year": None,
+            "total_weight": 395,
+            "vehicle_weight": 198,
+            "propulsion": "Benzin",
+            "tow_bar": False,
+            "fuel_consumption": None,
+            "cylinders": 4,
             "plugin_hybrid": None,
+            "electricity_consumption": None,
+            "electric_range": None,
+            "battery_capacity": None,
+            "body_type": None,
+            "particle_filter": None,
+            "doors": None,
         },
     }
     
-    for licens_plate in expected_data.keys():
-        dmr_obj = DMR().get_by_plate(license_plate=licens_plate)
+    for license_plate in expected_data.keys():
+        dmr_obj = DMR().get_by_plate(license_plate=license_plate)
     
-        assert dmr_obj.make == expected_data[licens_plate]["make"]
-        assert dmr_obj.propulsion == expected_data[licens_plate]["propulsion"]
-        assert dmr_obj.fuel_consumption == expected_data[licens_plate]["fuel_consumption"]
-        assert dmr_obj.tow_bar == expected_data[licens_plate]["tow_bar"]
-        assert dmr_obj.vehicle_weight == expected_data[licens_plate]["vehicle_weight"]
-        assert dmr_obj.total_weight == expected_data[licens_plate]["total_weight"]
-        assert dmr_obj.particle_filter == expected_data[licens_plate]["particle_filter"]
-        assert dmr_obj.first_registration == expected_data[licens_plate]["first_registration"]
-        assert dmr_obj.vin == expected_data[licens_plate]["vin"]
-        assert dmr_obj.type == expected_data[licens_plate]["type"]
-        assert dmr_obj.plugin_hybrid == expected_data[licens_plate]["plugin_hybrid"]
+        assert dmr_obj.raw_data == expected_data[license_plate]
         
         sleep(3)
-    
-    # Test non-existing license plate
-    dmr_obj = DMR().get_by_plate(license_plate="GGGGGGG")
-    assert dmr_obj == None
