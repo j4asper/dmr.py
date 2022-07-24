@@ -1,4 +1,5 @@
 from .utils import scrape_async, scrape
+from string import punctuation, whitespace
 
 class DMR:
     def __init__(self, make=None, model=None, variant=None, type=None, color=None, total_weight=None, vin=None, last_update=None, registration_number=None, first_registration=None, use=None, model_year=None, vehicle_weight=None, propulsion=None, tow_bar=None, fuel_consumption=None, cylinders=None, plugin_hybrid=None, electricity_consumption=None, electric_range=None, battery_capacity=None, body_type=None, raw_data=None, vehicle_id=None, doors=None, particle_filter=None):
@@ -63,7 +64,8 @@ class DMR:
         )
 
     def validate_license_plate(self, license_plate):
-        return len(license_plate) > 7 or len(license_plate) < 2
+        illegal_chars = [char for char in punctuation].extend([char for char in whitespace])
+        return len(license_plate) <= 7 or len(license_plate) >= 2 and not any(char in license_plate for char in illegal_chars)
     
     def to_dict(self):
         """Get JSON version of the object with object attributes as keys, and corresponding values.
@@ -85,7 +87,7 @@ class DMR:
         Returns:
             DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
         """
-        if len(license_plate) > 7 or len(license_plate) < 2:
+        if not self.validate_license_plate(license_plate):
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
 
         data = scrape(license_plate)
@@ -106,7 +108,7 @@ class DMR:
         Returns:
             DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
         """
-        if len(license_plate) > 7 or len(license_plate) < 2:
+        if not self.validate_license_plate(license_plate):
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
         
         data = await scrape_async(license_plate)
