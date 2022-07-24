@@ -74,6 +74,19 @@ def test_get_by_plate():
             "type": "Varebil",
             "plugin_hybrid": None,
         },
+        "ca20548": {
+            "make": "Yamaha",
+            "propulsion": "Benzin",
+            "fuel_consumption": None,
+            "tow_bar": False,
+            "vehicle_weight": 198,
+            "total_weight": 395,
+            "particle_filter": None,
+            "first_registration": datetime(2000, 8, 3, 0, 0),
+            "vin": "TP1224102800",
+            "type": "Motorcykel",
+            "plugin_hybrid": None,
+        },
     }
     
     for licens_plate in expected_data.keys():
