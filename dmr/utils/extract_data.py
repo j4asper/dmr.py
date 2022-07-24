@@ -1,11 +1,11 @@
 # Landing page when looking up a licens plate, the page title is "1. Køretøj"
 def page_1(source):
     data = dict()
-    make, model, variant = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[2]/span[2]')[0].text_content().split(", ", 2)
+    make, model, variant = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[2]/span[2]')[0].text_content().split(",", 2)
     data["make"], data["model"], data["variant"] = make.strip().lower().capitalize(), model.strip().lower().capitalize(), variant.strip().lower().capitalize()
     data["vin"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[1]/span[2]')[0].text_content()
     data["type"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[3]/span[2]')[0].text_content()
-    data["last_update"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[4]/span[2]')[0].text_content().replace(" d. ", "")
+    data["last_update"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[4]/span[2]')[0].text_content().split(" ")[-1]
     data["registration_number"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[2]/div/div[1]/span[2]')[0].text_content()
     data["first_registration"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[4]/div/div[2]/div[1]/div[2]/span')[0].text_content()
     data["use"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[2]/div/div[3]/span[2]')[0].text_content()
