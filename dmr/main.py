@@ -1,7 +1,7 @@
 from .utils import scrape_async, scrape
 
 class DMR:
-    def __init__(self, make=None, model=None, variant=None, type=None, color=None, total_weight=None, vin=None, last_update=None, licens_plate=None, first_registration=None, use=None, model_year=None, vehicle_weight=None, propulsion=None, tow_bar=None, fuel_consumption=None, cylinders=None, plugin_hybrid=None, electricity_consumption=None, electric_range=None, battery_capacity=None, body_type=None, raw_data=None):
+    def __init__(self, make=None, model=None, variant=None, type=None, color=None, total_weight=None, vin=None, last_update=None, registration_number=None, first_registration=None, use=None, model_year=None, vehicle_weight=None, propulsion=None, tow_bar=None, fuel_consumption=None, cylinders=None, plugin_hybrid=None, electricity_consumption=None, electric_range=None, battery_capacity=None, body_type=None, raw_data=None, vehicle_id=None, doors=None, particle_filter=None):
         self.make = make
         self.model = model
         self.variant = variant
@@ -11,7 +11,7 @@ class DMR:
         self.total_weight = total_weight
         self.vin = vin
         self.last_update = last_update
-        self.licens_plate = licens_plate
+        self.registration_number = registration_number
         self.first_registration = first_registration
         self.use = use
         self.model_year = model_year
@@ -25,6 +25,9 @@ class DMR:
         self.electric_range = electric_range
         self.battery_capacity = battery_capacity
         self.body_type = body_type
+        self.vehicle_id = vehicle_id
+        self.doors = doors
+        self.particle_filter = particle_filter
         
         self.raw_data = raw_data
 
@@ -39,7 +42,7 @@ class DMR:
             total_weight=data["total_weight"],
             vin=data["vin"],
             last_update=data["last_update"],
-            licens_plate=data["registration_number"],
+            registration_number=data["registration_number"],
             first_registration=data["first_registration"],
             use=data["use"],
             model_year=data["model_year"],
@@ -53,7 +56,10 @@ class DMR:
             electric_range=data["electric_range"],
             battery_capacity=data["battery_capacity"],
             body_type=data["body_type"],
-            raw_data=data
+            vehicle_id = data["vehicle_id"],
+            doors = data["doors"],
+            particle_filter = data["particle_filter"],
+            raw_data=data,
         )
 
     def get_by_plate(self, license_plate:str):
