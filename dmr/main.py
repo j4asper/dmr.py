@@ -62,11 +62,25 @@ class DMR:
             raw_data=data,
         )
 
+    def to_dict(self):
+        """Get JSON version of the object with object attributes as keys, and corresponding values.
+
+        Returns:
+            Dict: Returns the object in a Dictionary/JSON format.
+        """
+        return self.raw_data
+
     def get_by_plate(self, license_plate:str):
         """Get data from DMR by license plate.
 
         Args:
-            license_plate (str): The licens plate that should be searched for
+            license_plate (str): The licens plate to look up.
+
+        Raises:
+            TypeError: Invalid licens plate was given
+
+        Returns:
+            DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
         """
         if len(license_plate) > 7 or len(license_plate) < 2:
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
@@ -82,7 +96,13 @@ class DMR:
         """Get data from DMR asynchronously by license plate.
 
         Args:
-            license_plate (str): The licens plate that should be searched for
+            license_plate (str): The licens plate to look up.
+
+        Raises:
+            TypeError: Invalid licens plate was given
+
+        Returns:
+            DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
         """
         if len(license_plate) > 7 or len(license_plate) < 2:
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
