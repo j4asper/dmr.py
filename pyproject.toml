@@ -35,3 +35,4 @@ python = "^3.7"
 [project.urls]
 "Homepage" = "https://github.com/j4asper/dmr.py"
 "Bug Tracker" = "https://github.com/j4asper/dmr.py/issues"
+"Wiki" = "https://github.com/j4asper/dmr.py/wiki"
