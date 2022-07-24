@@ -6,7 +6,7 @@ def test_get_by_plate():
     
     # Plate 1: Benzin car
     # Plate 2: Electric
-    # Plate 3: Plug-In Hybrid
+    # Plate 3: Plug-in Hybrid
     
     expected_data = {
         "cw87553": {
