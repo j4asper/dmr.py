@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dmr.py"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Jasper", email="jasper@jazper.dk" },
 ]
@@ -25,9 +25,6 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-speed = [
-    "aiohttp[speed] >= 3.8.1"
-]
 test = [
     "pytest>=7.1.2",
 ]
