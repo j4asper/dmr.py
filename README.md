@@ -29,7 +29,7 @@ vehicle = DMR().get_by_plate(licens_plate)
 print("The vehicle make is:", vehicle.make)
 ```
 
-asynchronously  
+Asynchronously  
 ```python
 from dmr import DMR
 
