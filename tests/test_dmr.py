@@ -6,7 +6,7 @@ def test_get_by_plate():
     dmr_obj = DMR().get_by_plate(license_plate="cw87553")
     
     assert dmr_obj.make == "Suzuki"
-    assert dmr_obj.propulsion == "Benzin"
+    assert dmr_obj.propulsion == "Benz"
     assert dmr_obj.fuel_consumption == 15.4
     assert dmr_obj.tow_bar == False
     assert dmr_obj.vehicle_weight == 950
