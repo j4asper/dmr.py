@@ -14,6 +14,33 @@ Install current code from this repo, you will need to have git installed in orde
 python -m pip install git+https://github.com/j4asper/dmr.py
 ```
 
+
+## Example  
+
+synchronously  
+```python
+from dmr import DMR
+
+licens_plate = "cw87553"
+
+# Get DMR object with data
+vehicle = DMR().get_by_plate(licens_plate)
+
+print("The vehicle make is:", vehicle.make)
+```
+
+asynchronously  
+```python
+from dmr import DMR
+
+licens_plate = "cw87553"
+
+# Get DMR object with data
+vehicle = await DMR().get_by_plate_async(licens_plate)
+
+print("The vehicle make is:", vehicle.make)
+```
+
 ## Contributing:
 I would be more than happy if those who know how to make pull requests, contribute with code!  
 
