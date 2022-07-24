@@ -1,7 +1,9 @@
 # dmr.py  
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dmr.py?style=for-the-badge)
-![PyPI](https://img.shields.io/pypi/v/dmr.py?style=for-the-badge)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/dmr.py?style=for-the-badge)  
+![PyPI](https://img.shields.io/pypi/v/dmr.py?style=for-the-badge)  
+![PyPI - Downloads](https://img.shields.io/pypi/dm/dmr.py?style=for-the-badge)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/j4asper/dmr.py/dmr%20test?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/j4asper/dmr.py?style=for-the-badge)  
 You will no longer need an exspensive API for danish licens plate lookups with dmr.py, this tool scrapes motorregister.skat.dk directly and returns the data for you to use in your application.  
 
 ## Installation:  
