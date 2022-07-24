@@ -47,7 +47,20 @@ def test_get_by_plate():
             "vin": "LSJA24397MN069226",
             "type": "Personbil",
             "plugin_hybrid": True,
-        }
+        },
+        "cy41511": {
+            "make": "Toyota",
+            "propulsion": "Brint",
+            "fuel_consumption": None,
+            "tow_bar": False,
+            "vehicle_weight": None,
+            "total_weight": 2415,
+            "particle_filter": False,
+            "first_registration": datetime(2021, 3, 9, 0, 0),
+            "vin": "JTDAABAA80A000567",
+            "type": "Personbil",
+            "plugin_hybrid": False,
+        },
     }
     
     for licens_plate in expected_data.keys():
