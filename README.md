@@ -37,10 +37,10 @@ Asynchronously
 ```python
 from dmr import DMR
 
-licens_plate = "cw87553"
+license_plate = "cw87553"
 
 # Get DMR object with data
-vehicle = await DMR().get_by_plate_async(licens_plate)
+vehicle = await DMR().get_by_plate_async(license_plate)
 
 print("The vehicle make is:", vehicle.make)
 ```
