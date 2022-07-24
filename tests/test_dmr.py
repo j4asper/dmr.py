@@ -2,12 +2,12 @@ from datetime import datetime
 from dmr import DMR
 
 def test_get_by_plate():
-    """Tests the scraper by getting data from one licens plate and check with the expected values"""
-    
+    """Tests the scraper by getting data from a list of licens plates and check with the expected values"""
+
     # Plate 1: Benzin car
     # Plate 2: Electric
     # Plate 3: Plug-in Hybrid
-    
+
     expected_data = {
         "cw87553": {
             "make": "Suzuki",
