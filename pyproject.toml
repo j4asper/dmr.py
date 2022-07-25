@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dmr.py"
-version = "0.0.4"
+version = "0.0.3"
 authors = [
   { name="Jasper", email="jasper@jazper.dk" },
 ]
-requires-python = ">=3.7"
 description = "Pull data directly from the danish vehicle registar with dmr.py"
 readme = "README.md"
 license = { file="LICENSE" }
+requires-python = ">=3.7"
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Intended Audience :: Developers",
