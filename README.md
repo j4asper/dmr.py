@@ -21,7 +21,7 @@ python -m pip install git+https://github.com/j4asper/dmr.py
 
 ## Example  
 
-synchronously  
+Synchronously  
 ```python
 from dmr import DMR
 
@@ -51,10 +51,10 @@ print("The vehicle make is:", vehicle.make)
 I would be more than happy if those who know how to make pull requests, contribute with code!  
 
 ## ToDo
-- [ ] Add from_json and to_json functions.  
+- [x] Add from_dict and to_dict functions.  
 - [x] Add documentation with all possible values.  
 - [ ] Scrape more parts of the DMR site to get even more data. 
-- [ ] Add wider tests with different types of cars or bikes.  
+- [x] Add more broad tests with different types of cars or bikes.  
 
 ## Issue we can't do anything about.  
 If you have used this tool, you might notice that it is slow AF. That is probably due to our government using multiple 80-100 GB XML files as the databse for all vehicles in Denmark. It roughly takes about 3 seconds to do a lookup on the DMR site. Caching is __highly__ recommended!
