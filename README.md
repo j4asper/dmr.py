@@ -5,7 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/j4asper/dmr.py?style=for-the-badge)  
 
 # dmr.py  
-You will no longer need an exspensive API for danish license plate lookups with dmr.py, this tool scrapes motorregister.skat.dk directly and returns the data for you to use in your application.  
+You will no longer need an exspensive API for danish license plate lookups with dmr.py, this tool scrapes the [danish vehicle registar](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk') directly and returns the data for you to use in your application. Be aware, that because of skat.dk's very slow database lookups, it could take about 3-4 seconds before getting a response.  
 
 ## Installation:  
 Install with pip
