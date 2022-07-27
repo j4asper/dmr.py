@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dmr.py"
-version = "0.0.4"
+version = "0.0.5"
 authors = [
   { name="Jasper", email="jasper@jazper.dk" },
 ]
@@ -36,6 +36,11 @@ dependencies = [
 [project.optional-dependencies]
 test = [
     "pytest>=7.1.2",
+]
+speed = [
+    "aiodns >= 1.1",
+    "Brotli",
+    "cchardet",
 ]
 
 [tool.poetry.dependencies]
