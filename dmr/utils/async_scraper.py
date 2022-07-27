@@ -4,10 +4,10 @@ from .headers import get_headers
 from .clean_data import clean
 from .extract_data import *
 
-async def scrape_async(licens_plate):
+async def scrape_async(license_plate:str):
     async def get_token(session):
         """Get dmrFormToken"""
-        async with session.get("https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej", headers=get_headers(), allow_redirects=True) as resp:
+        async with session.get("https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej", headers=get_headers(), allow_redirects=True, ssl=False) as resp:
             content = await resp.text()
         source = fromstring(content)
         try:
@@ -23,12 +23,12 @@ async def scrape_async(licens_plate):
 
         payload = {
             "dmrFormToken": token,
-            "soegeord": licens_plate,
+            "soegeord": license_plate,
             "soegekriterie:": "REGISTRERINGSNUMMER",
             new_url: "Søg"
         }
 
-        async with session.post('https://motorregister.skat.dk' + new_url, data=payload, headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url}), allow_redirects=True) as resp:
+        async with session.post('https://motorregister.skat.dk' + new_url, data=payload, headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url}), allow_redirects=True, ssl=False) as resp:
             content = await resp.text()
 
         if "Ingen køretøjer fundet." in content:
@@ -40,7 +40,7 @@ async def scrape_async(licens_plate):
         data = page_1(source)
         second_page = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[1]/ul/li[2]/div/a')[0].get("href")
 
-        async with session.get("https://motorregister.skat.dk" + second_page, headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url[:-16]}), allow_redirects=True) as resp:
+        async with session.get("https://motorregister.skat.dk" + second_page, headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url[:-16]}), allow_redirects=True, ssl=False) as resp:
             content = await resp.text()
 
         source = fromstring(content)
