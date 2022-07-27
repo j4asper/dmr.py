@@ -1,6 +1,7 @@
 from datetime import datetime
 from time import sleep
 from dmr import DMR
+import asyncio
 
 def test_validate_license_plate():
     """Test license plate validator"""
@@ -181,10 +182,16 @@ def test_get_by_plate():
             "doors": None,
         },
     }
-    
+
     for license_plate in expected_data.keys():
-        dmr_obj = DMR().get_by_plate(license_plate=license_plate)
-    
+        if list(expected_data).index(license_plate) <= 3:
+            # Async test
+            loop = asyncio.new_event_loop()
+            dmr_obj = loop.run_until_complete(DMR().get_by_plate_async(license_plate=license_plate))
+        else:
+            # Sync test
+            dmr_obj = DMR().get_by_plate(license_plate=license_plate)
+
         assert dmr_obj.raw_data == expected_data[license_plate]
-        
+
         sleep(3)
