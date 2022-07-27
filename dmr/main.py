@@ -28,7 +28,7 @@ class DMR:
         self.vehicle_id = vehicle_id
         self.doors = doors
         self.particle_filter = particle_filter
-        
+
         self.raw_data = raw_data
 
     def __from_dict(self, data):
@@ -62,9 +62,17 @@ class DMR:
             raw_data=data,
         )
 
-    def validate_license_plate(self, license_plate):
+    def validate_license_plate(self, license_plate:str):
+        """Checks if the given string can be a license plate, this check is prior to the webscraping.
+
+        Args:
+            license_plate (str): The license plate to check
+
+        Returns:
+            bool: Returns True if the string could be a license plate, or False if not.
+        """
         return len(license_plate) <= 7 and len(license_plate) >= 2 and license_plate.isalnum()
-    
+
     def to_dict(self):
         """Get JSON version of the object with object attributes as keys, and corresponding values.
 
@@ -88,11 +96,8 @@ class DMR:
         if not self.validate_license_plate(license_plate):
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
 
-        data = scrape(license_plate)
-        if data != None:
-            dmr_obj = self.__from_dict(data)
-            return dmr_obj
-        return None
+        data = scrape(license_plate=license_plate)
+        return None if data == None else self.__from_dict(data)
 
     async def get_by_plate_async(self, license_plate:str):
         """Get data from DMR asynchronously by license plate.
@@ -108,9 +113,6 @@ class DMR:
         """
         if not self.validate_license_plate(license_plate):
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
-        
-        data = await scrape_async(license_plate)
-        if data != None:
-            dmr_obj = self.__from_dict(data)
-            return dmr_obj
-        return None
+
+        data = await scrape_async(license_plate=license_plate)
+        return None if data == None else self.__from_dict(data)
