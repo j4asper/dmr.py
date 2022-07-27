@@ -9,12 +9,18 @@ You will no longer need an exspensive API for danish license plate lookups with 
 
 ## Installation:  
 Install with pip
-```
+```console
 python -m pip install dmr.py
 ```  
 
-Install current code from this repo, you will need to have git installed in order to do this.
+If you want to install the additional speedup packages, you can use the command below. These speedup packages is only for the async part of this library. If you are only using the synchronous part, then this is unnecessary.
+```console
+python -m pip install dmr.py[speed]
 ```
+
+
+Install current code from this repo, you will need to have git installed in order to do this.
+```console
 python -m pip install git+https://github.com/j4asper/dmr.py
 ```
 
