@@ -34,7 +34,7 @@ from dmr import DMR
 license_plate = "cw87553"
 
 # Get DMR object with data
-vehicle = DMR().get_by_plate(license_plate)
+vehicle = DMR(license_plate).get_by_plate()
 
 print("The vehicle make is:", vehicle.make)
 ```
@@ -46,7 +46,7 @@ from dmr import DMR
 license_plate = "cw87553"
 
 # Get DMR object with data
-vehicle = await DMR().get_by_plate_async(license_plate)
+vehicle = await DMR(license_plate).get_by_plate_async()
 
 print("The vehicle make is:", vehicle.make)
 ```
