@@ -187,10 +187,10 @@ def test_get_by_plate():
         if list(expected_data).index(license_plate) <= 3:
             # Async test
             loop = asyncio.new_event_loop()
-            dmr_obj = loop.run_until_complete(DMR().get_by_plate_async(license_plate=license_plate))
+            dmr_obj = loop.run_until_complete(DMR(license_plate).get_by_plate_async())
         else:
             # Sync test
-            dmr_obj = DMR().get_by_plate(license_plate=license_plate)
+            dmr_obj = DMR(license_plate).get_by_plate()
 
         assert dmr_obj.raw_data == expected_data[license_plate]
 
