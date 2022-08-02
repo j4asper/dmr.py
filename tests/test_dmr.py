@@ -45,6 +45,11 @@ def test_get_by_plate():
             "body_type": None,
             "particle_filter": False,
             "doors": None,
+            "insurance": {"company": "Topdanmark A/S",
+                          "created": datetime(2021, 1, 15, 0, 0),
+                          "is_active": True,
+                          "number": None
+            }
         },
         "ap43115": {
             "make": "Tesla",
@@ -72,6 +77,11 @@ def test_get_by_plate():
             "body_type": "Hatchback",
             "particle_filter": None,
             "doors": 5,
+            "insurance": {"company": "GF-FORSIKRING A/S",
+                          "created": datetime(2020, 9, 5, 0, 0),
+                          "is_active": True,
+                          "number": None
+            }
         },
         "dd24506": {
             "make": "Mg",
@@ -99,6 +109,11 @@ def test_get_by_plate():
             "body_type": "Hatchback",
             "particle_filter": False,
             "doors": 5,
+            "insurance": {"company": "ABC for Eir Försäkring AB",
+                          "created": datetime(2022, 6, 4, 0, 0),
+                          "is_active": True,
+                          "number": None
+            }
         },
         "cy41511": {
             "make": "Toyota",
@@ -126,6 +141,11 @@ def test_get_by_plate():
             "body_type": "Sedan  ",
             "particle_filter": False,
             "doors": 4,
+            "insurance": {"company": "GJENSIDIGE FORSIKRING",
+                          "created": datetime(2022, 3, 31, 0, 0),
+                          "is_active": True,
+                          "number": None
+            }
         },
         "ap22698": {
             "make": "Fiat",
@@ -153,6 +173,11 @@ def test_get_by_plate():
             "body_type": None,
             "particle_filter": True,
             "doors": 3,
+            "insurance": {"company": "Alm. Brand",
+                          "created": datetime(2021, 6, 29, 0, 0),
+                          "is_active": True,
+                          "number": None
+            }
         },
         "ca20548": {
             "make": "Yamaha",
@@ -180,6 +205,11 @@ def test_get_by_plate():
             "body_type": None,
             "particle_filter": None,
             "doors": None,
+            "insurance": {"company": "GJENSIDIGE FORSIKRING",
+                          "created": datetime(2021, 3, 19, 0, 0),
+                          "is_active": True,
+                          "number": None
+            }
         },
     }
 
