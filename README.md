@@ -38,6 +38,7 @@ license_plate = "cw87553"
 vehicle = DMR(license_plate).get_by_plate()
 
 print("The vehicle make is:", vehicle.make)
+# The vehicle make is: Suzuki
 ```
 ---
 **Asynchronously**  
@@ -50,6 +51,7 @@ license_plate = "cw87553"
 vehicle = await DMR(license_plate).get_by_plate_async()
 
 print("The vehicle make is:", vehicle.make)
+# The vehicle make is: Suzuki
 ```
 
 **All attributes to the DMR() object [can be viewed in the Wiki](https://github.com/j4asper/dmr.py/wiki/DMR-Attributes 'Click here to go to the Wiki')**
