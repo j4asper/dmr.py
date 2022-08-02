@@ -56,11 +56,14 @@ print("The vehicle make is:", vehicle.make)
 ## Contributing:
 I would be more than happy if those who know how to make pull requests, contribute with code!  
 
-## ToDo
+## ToDo:
 - [x] Add from_dict and to_dict functions.  
 - [x] Add documentation with all possible values.  
 - [ ] Scrape more parts of the DMR site to get even more data. 
 - [x] Add more broad tests with different types of cars or bikes.  
 
 ## Issue we can't do anything about.  
-If you have used this tool, you might notice that it is slow AF. That is probably due to our government using multiple 80-100 GB XML files as the databse for all vehicles in Denmark. It roughly takes about 3 seconds to do a lookup on the DMR site. Caching is __highly__ recommended!
+If you have used this tool, you might notice that it is slow AF. That is probably due to our government using multiple 80-100 GB XML files as the databse for all vehicles in Denmark. It roughly takes about 3 seconds to do a lookup on the DMR site. Caching is __highly__ recommended!  
+
+## License Plates for testing:
+You can use all the license plates listed in [**This file**](https://github.com/j4asper/dmr.py/blob/main/license_plates.txt 'Click here') for testing. If a license plate turns out to be invalid, please remove it and make a PR, or create an issue stating this.
