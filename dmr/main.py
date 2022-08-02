@@ -1,5 +1,5 @@
-from .utils import scrape_async, scrape
 from __future__ import annotations
+from .utils import scrape_async, scrape
 from typing import Union
 import datetime
 
