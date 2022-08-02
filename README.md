@@ -19,7 +19,7 @@ python -m pip install dmr.py[speed]
 ```
 
 
-Install current code from this repo, you will need to have git installed in order to do this.
+Install current code from this repo, you will need to have git installed in order to do this. The code in the repo might not match the current release, if you experience errors you should switch back the the latest release.
 ```console
 python -m pip install git+https://github.com/j4asper/dmr.py
 ```
