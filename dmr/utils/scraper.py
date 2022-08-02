@@ -33,14 +33,18 @@ def scrape(license_plate:str):
             # Licens plate doesn't exist
             return None
 
+        # Page 1 scrape
         source = fromstring(resp.text)
         data = page_1(source)
 
-        second_page = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[1]/ul/li[2]/div/a')[0].get("href")
-
-        resp = session.get("https://motorregister.skat.dk" + second_page, headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url[:-16]}), allow_redirects=True)
-
+        # Page 2 scrape
+        resp = session.get(str(resp.url) + "&_eventId=customPage&_pageIndex=1", headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url[:-16]}), allow_redirects=True)
         source = fromstring(resp.text)
         data.update(page_2(source))
+        
+        # Page 4 scrape
+        resp = session.get(str(resp.url) + "&_eventId=customPage&_pageIndex=3", headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url[:-16]}), allow_redirects=True)
+        source = fromstring(resp.text)
+        data.update(page_4(source))
 
     return clean(data)
