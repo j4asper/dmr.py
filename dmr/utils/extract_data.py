@@ -32,3 +32,15 @@ def page_2(source):
     data["particle_filter"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[8]/div/div[1]/fieldset/div[6]/div[2]/span')[0].text_content()
     data["doors"] = source.xpath('/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[6]/div/div[1]/div[3]/div[2]/span')[0].text_content()
     return data
+
+# Page 3: "Syn"
+
+
+# Page 4: "Forsikring"
+def page_4(source):
+    data = {"insurance": {}}
+    data["insurance"]["company"] = source.xpath('//*[@id="lblSelskab"]')[0].text_content()
+    data["insurance"]["is_active"] = True if source.xpath('//*[@id="lblStatus"]')[0].text_content() == "Aktiv" else False
+    data["insurance"]["number"] = None if source.xpath('//*[@id="lblBevisNummer"]')[0].text_content() == "N/A" else source.xpath('//*[@id="lblBevisNummer"]')[0].text_content()
+    data["insurance"]["created"] = source.xpath('//*[@id="lblbevisdato"]')[0].text_content()
+    return data
