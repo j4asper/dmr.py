@@ -2,6 +2,9 @@ from datetime import datetime
 
 def clean(data):
     for key, value in data.items():
+        if key == "insurance":
+            data[key]["created"] = datetime.strptime(data[key]["created"], "%d-%m-%Y")
+            continue
         if value.startswith("-") or value == "Ukendt":
             data[key] = None
             continue
