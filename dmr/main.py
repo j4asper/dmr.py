@@ -1,6 +1,8 @@
-import datetime
-from typing import Union
 from .utils import scrape_async, scrape
+from __future__ import annotations
+from typing import Union
+import datetime
+
 
 class DMR:
     def __init__(self, registration_number:str=None):
@@ -34,6 +36,12 @@ class DMR:
         dmr_obj._doors = data["doors"]
         dmr_obj._particle_filter = data["particle_filter"]
         dmr_obj._raw_data=data
+        dmr_obj._insurance = Insurance(
+            data["insurance"]["company"],
+            data["insurance"]["is_active"],
+            data["insurance"]["number"],
+            data["insurance"]["created"],
+        )
         return dmr_obj
         
     def validate_license_plate(self, license_plate:str):
@@ -220,13 +228,38 @@ class DMR:
     def doors(self) -> Union[int, None]:
         """The amount of doors the vehicle has."""
         return self._doors
-    
+
     @property
     def particle_filter(self) -> Union[bool, None]:
         """If the vehicle has a particle filter."""
         return self._particle_filter
-    
+
     @property
     def raw_data(self) -> Union[dict, None]:
         """A dictionary version of the DMR object."""
         return self._raw_data
+
+    @property
+    def insurance(self) -> Insurance:
+        """An insurance object with insurance specifications."""
+        return self._insurance
+
+class Insurance:
+    """
+    The Insurance object holds the insurance information about the vehicle.
+    
+    Possible attributes:
+    
+        Insurance.company (str): The insurance provider.
+        
+        Insurance.is_active (bool): Whether or not the insurance is active.
+        
+        Insurance.number (str): The insurance number, typically returns None.
+        
+        Insurance.created (datetime): The date when the insurance was created.
+    """
+    def __init__(self, company:str=None, is_active:bool=None, number:int=None, created:datetime.datetime=None):
+        self.company = company
+        self.is_active = is_active
+        self.number = number
+        self.created = created
