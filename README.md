@@ -27,7 +27,7 @@ python -m pip install git+https://github.com/j4asper/dmr.py
 
 ## Example  
 
-Synchronously  
+**Synchronously**  
 ```python
 from dmr import DMR
 
@@ -38,8 +38,8 @@ vehicle = DMR(license_plate).get_by_plate()
 
 print("The vehicle make is:", vehicle.make)
 ```
-
-Asynchronously  
+---
+**Asynchronously**  
 ```python
 from dmr import DMR
 
