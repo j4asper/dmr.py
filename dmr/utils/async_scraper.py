@@ -1,7 +1,6 @@
 from aiohttp import ClientSession
 from lxml.html import fromstring
 from .headers import get_headers
-from .clean_data import clean
 from .extract_data import *
 
 async def scrape_async(license_plate:str):
@@ -51,4 +50,4 @@ async def scrape_async(license_plate:str):
         source = fromstring(content)
         data.update(page_4(source))
 
-    return clean(data)
+    return data

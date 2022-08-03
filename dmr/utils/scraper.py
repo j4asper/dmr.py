@@ -1,7 +1,6 @@
 from requests import Session
 from lxml.html import fromstring
 from .headers import get_headers
-from .clean_data import clean
 from .extract_data import *
 
 def scrape(license_plate:str):
@@ -47,4 +46,4 @@ def scrape(license_plate:str):
         source = fromstring(resp.text)
         data.update(page_4(source))
 
-    return clean(data)
+    return data
