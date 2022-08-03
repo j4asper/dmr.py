@@ -1,5 +1,5 @@
 from __future__ import annotations
-from .utils import scrape_async, scrape
+from .utils import scrape_async, scrape, errors
 from pydantic import BaseModel
 from typing import Optional
 import datetime
@@ -64,18 +64,18 @@ class DMR:
             license_plate (str): The licens plate to look up. Not required if license plate was passed into the DMR object.
 
         Raises:
-            TypeError: Invalid licens plate was given
+            InvalidLicensePlate: Invalid licens plate was given
 
         Returns:
             DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
         """
         if self._registration_number is None and license_plate is None:
-            raise Exception("No registration number/license plate was passed into the DMR object or the get_by_plate() function.")
+            raise ValueError("No registration number/license plate was passed into the DMR object or the get_by_plate() function.")
         
         license_plate = self._registration_number if license_plate is None else license_plate
         
         if not self.validate_license_plate(license_plate):
-            raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
+            raise errors.InvalidLicensePlate("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
 
         data = scrape(license_plate=license_plate)
         return None if data is None else self.__from_dict(data)
@@ -87,18 +87,18 @@ class DMR:
             license_plate (str): The licens plate to look up.
 
         Raises:
-            TypeError: Invalid licens plate was given
+            InvalidLicensePlate: Invalid licens plate was given
 
         Returns:
             DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
         """
         if self._registration_number is None and license_plate is None:
-            raise Exception("No registration number/license plate was passed into the DMR object or the get_by_plate() function.")
+            raise ValueError("No registration number/license plate was passed into the DMR object or the get_by_plate() function.")
         
         license_plate = self._registration_number if license_plate is None else license_plate
         
         if not self.validate_license_plate(license_plate):
-            raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
+            raise errors.InvalidLicensePlate("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
 
         data = await scrape_async(license_plate=license_plate)
         return None if data is None else self.__from_dict(data)
