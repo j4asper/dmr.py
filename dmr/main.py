@@ -1,8 +1,8 @@
 from __future__ import annotations
 from .utils import scrape_async, scrape
+from pydantic import BaseModel
 from typing import Optional
 import datetime
-
 
 class DMR:
     def __init__(self, registration_number:str=None):
@@ -35,12 +35,7 @@ class DMR:
         self._doors = data["doors"]
         self._particle_filter = data["particle_filter"]
         self._raw_data=data
-        self._insurance = Insurance(
-            data["insurance"]["company"],
-            data["insurance"]["is_active"],
-            data["insurance"]["number"],
-            data["insurance"]["created"],
-        )
+        self._insurance = Insurance(**data["insurance"])
         return self
         
     def validate_license_plate(self, license_plate:str):
@@ -108,6 +103,7 @@ class DMR:
         data = await scrape_async(license_plate=license_plate)
         return None if data is None else self.__from_dict(data)
     
+
     @property
     def make(self) -> str:
         """The make/manufacturer of the vehicle"""
@@ -243,7 +239,8 @@ class DMR:
         """An insurance object with insurance specifications."""
         return self._insurance
 
-class Insurance:
+
+class Insurance(BaseModel):
     """
     The Insurance object holds the insurance information about the vehicle.
 
@@ -257,8 +254,7 @@ class Insurance:
 
         Insurance.created (datetime): The date when the insurance was created.
     """
-    def __init__(self, company:str=None, is_active:bool=None, number:int=None, created:datetime.datetime=None):
-        self.company = company
-        self.is_active = is_active
-        self.number = number
-        self.created = created
+    company:str
+    is_active:bool
+    number:Optional[int]
+    created:datetime.datetime
