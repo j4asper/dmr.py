@@ -16,7 +16,7 @@ def test_get_by_plate():
 
     # Test non-existing license plate
     dmr_obj = DMR().get_by_plate(license_plate="GGGGGGG")
-    assert dmr_obj == None
+    assert dmr_obj is None
 
     expected_data = {
         "cw87553": {

@@ -75,16 +75,16 @@ class DMR:
         Returns:
             DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
         """
-        if self._registration_number == None and license_plate == None:
+        if self._registration_number is None and license_plate is None:
             raise Exception("No registration number/license plate was passed into the DMR object or the get_by_plate() function.")
         
-        license_plate = self._registration_number if license_plate == None else license_plate
+        license_plate = self._registration_number if license_plate is None else license_plate
         
         if not self.validate_license_plate(license_plate):
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
 
         data = scrape(license_plate=license_plate)
-        return None if data == None else self.__from_dict(data)
+        return None if data is None else self.__from_dict(data)
 
     async def get_by_plate_async(self, license_plate:str=None):
         """Get data from DMR asynchronously by license plate.
@@ -98,16 +98,16 @@ class DMR:
         Returns:
             DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
         """
-        if self._registration_number == None and license_plate == None:
+        if self._registration_number is None and license_plate is None:
             raise Exception("No registration number/license plate was passed into the DMR object or the get_by_plate() function.")
         
-        license_plate = self._registration_number if license_plate == None else license_plate
+        license_plate = self._registration_number if license_plate is None else license_plate
         
         if not self.validate_license_plate(license_plate):
             raise TypeError("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
 
         data = await scrape_async(license_plate=license_plate)
-        return None if data == None else self.__from_dict(data)
+        return None if data is None else self.__from_dict(data)
     
     @property
     def make(self) -> str:
