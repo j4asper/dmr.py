@@ -185,7 +185,7 @@ def test_get_by_plate():
             "variant": "R 1",
             "vin": "TP1224102800",
             "type": "Motorcykel",
-            "last_update": datetime(2019, 3, 16, 0, 0),
+            "last_update": datetime(2022, 8, 12, 0, 0),
             "registration_number": "CA20548",
             "first_registration": datetime(2000, 8, 3, 0, 0),
             "use": "Privat personkørsel",
@@ -205,9 +205,9 @@ def test_get_by_plate():
             "body_type": None,
             "particle_filter": None,
             "doors": None,
-            "insurance": {"company": "GJENSIDIGE FORSIKRING",
-                          "created": datetime(2021, 3, 19, 0, 0),
-                          "is_active": True,
+            "insurance": {"company": "Alm. Brand",
+                          "created": datetime(2022, 8, 12, 0, 0),
+                          "is_active": False,
                           "number": None
             }
         },
