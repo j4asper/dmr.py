@@ -45,8 +45,8 @@ def test_get_by_plate():
             "body_type": None,
             "particle_filter": False,
             "doors": None,
-            "insurance": {"company": "Topdanmark A/S",
-                          "created": datetime(2021, 1, 15, 0, 0),
+            "insurance": {"company": "GF-FORSIKRING A/S",
+                          "created": datetime(2022, 11, 8, 0, 0),
                           "is_active": True,
                           "number": None
             }
