@@ -173,8 +173,8 @@ def test_get_by_plate():
             "body_type": None,
             "particle_filter": True,
             "doors": 3,
-            "insurance": {"company": "Alm. Brand",
-                          "created": datetime(2021, 6, 29, 0, 0),
+            "insurance": {"company": "TRYG FORSIKRING A/S",
+                          "created": datetime(2022, 8, 8, 0, 0),
                           "is_active": True,
                           "number": None
             }
