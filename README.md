@@ -57,7 +57,7 @@ print("The vehicle make is:", vehicle.make)
 **All attributes to the DMR() object [can be viewed in the Wiki](https://github.com/j4asper/dmr.py/wiki/DMR-Attributes 'Click here to go to the Wiki')**
 
 ## Contributing:
-I would be more than happy if those who know how to make pull requests, contribute with code!  
+I would be more than happy if those who know how to make pull requests, contribute with code! Sometimes XPaths may not match with the ones on the [danish vehicle register](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk'), if that's the case, then you can either make a pull request with XPath fixes or make an issue saying that the XPaths are wrong, then i will fix it.  
 
 ## ToDo:
 - [x] Add from_dict and to_dict functions.  
