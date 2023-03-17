@@ -4,18 +4,18 @@ from .headers import get_headers
 from .extract_data import *
 from .errors import MissingToken
 
+def get_token(session):
+    """Get dmrFormToken"""
+    resp = session.get("https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej", headers=get_headers(), allow_redirects=True)
+    source = fromstring(resp.text)
+    try:
+        token = source.xpath(XPATHS["other"]["token"])[0].get("value")
+        url = source.xpath(XPATHS["other"]["token_url"])[0].get("action")
+        return token, url
+    except (TypeError, KeyError):
+        raise MissingToken("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
 
 def scrape(license_plate:str):
-    def get_token(session):
-        """Get dmrFormToken"""
-        resp = session.get("https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej", headers=get_headers(), allow_redirects=True)
-        source = fromstring(resp.text)
-        try:
-            token = source.xpath(XPATHS["other"]["token"])[0].get("value")
-            url = source.xpath(XPATHS["other"]["token_url"])[0].get("action")
-            return token, url
-        except (TypeError, KeyError):
-            raise MissingToken("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
 
     with Session() as session:
         # Get dmrFormToken required to make site requests and get url to post data
