@@ -61,10 +61,10 @@ class DMR:
         """Get data from DMR by license plate.
 
         Args:
-            license_plate (str): The licens plate to look up. Not required if license plate was passed into the DMR object.
+            license_plate (str): The license plate to look up. Not required if license plate was passed into the DMR object.
 
         Raises:
-            InvalidLicensePlate: Invalid licens plate was given
+            InvalidLicensePlate: Invalid license plate was given
 
         Returns:
             DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
@@ -75,7 +75,7 @@ class DMR:
         license_plate = self._registration_number if license_plate is None else license_plate
         
         if not self.validate_license_plate(license_plate):
-            raise errors.InvalidLicensePlate("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
+            raise errors.InvalidLicensePlate("Invalid license plate. license plate length should be between 2 and 7 letters and/or digits.")
 
         data = scrape(license_plate=license_plate)
         return None if data is None else self.__from_dict(data)
@@ -84,10 +84,10 @@ class DMR:
         """Get data from DMR asynchronously by license plate.
 
         Args:
-            license_plate (str): The licens plate to look up.
+            license_plate (str): The license plate to look up.
 
         Raises:
-            InvalidLicensePlate: Invalid licens plate was given
+            InvalidLicensePlate: Invalid license plate was given
 
         Returns:
             DMR: DMR object is returned, check https://github.com/j4asper/dmr.py/wiki for more information.
@@ -98,7 +98,7 @@ class DMR:
         license_plate = self._registration_number if license_plate is None else license_plate
         
         if not self.validate_license_plate(license_plate):
-            raise errors.InvalidLicensePlate("Invalid license plate. Licens plate length should be between 2 and 7 letters and/or digits.")
+            raise errors.InvalidLicensePlate("Invalid license plate. license plate length should be between 2 and 7 letters and/or digits.")
 
         data = await scrape_async(license_plate=license_plate)
         return None if data is None else self.__from_dict(data)

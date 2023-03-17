@@ -16,7 +16,7 @@ def get_value_from_xpath(source, xpath_string):
     
     return content
 
-# Landing page when looking up a licens plate, the page title is "1. Køretøj"
+# Landing page when looking up a license plate, the page title is "1. Køretøj"
 def page_1(source):
     data = dict()
     make, model, variant = get_value_from_xpath(source, XPATHS["page_1"]["make_model_variant"]).split(",", 2)

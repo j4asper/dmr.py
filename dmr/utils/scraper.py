@@ -31,7 +31,7 @@ def scrape(license_plate:str):
         resp = session.post('https://motorregister.skat.dk' + new_url, data=payload, headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url}), allow_redirects=True)
 
         if "Ingen køretøjer fundet." in resp.text:
-            # Licens plate doesn't exist
+            # license plate doesn't exist
             return None
 
         # Page 1 scrape

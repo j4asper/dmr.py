@@ -34,7 +34,7 @@ async def scrape_async(license_plate:str):
             content = await resp.text()
 
         if "Ingen køretøjer fundet." in content:
-            # Licens plate doesn't exist
+            # license plate doesn't exist
             return None
 
         # Page 1 scrape
