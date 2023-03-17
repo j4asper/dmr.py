@@ -1,5 +1,10 @@
 # xpaths for the different elements on the site
 XPATHS = {
+    "other": {
+        "token": "/html/body/div[2]/div/div[1]/div[2]/form/input",
+        "token_url": "/html/body/div[2]/div/div[1]/div[2]/form",
+    },
+    
     "page_1": {
         "make_model_variant": "/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[2]/span[2]",
         "vin": "/html/body/div[2]/div/div[1]/div[2]/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[1]/div/div[1]/span[2]",

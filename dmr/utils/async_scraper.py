@@ -3,7 +3,7 @@ from lxml.html import fromstring
 from .headers import get_headers
 from .extract_data import *
 from .errors import MissingToken
-
+from .xpaths import XPATHS
 
 async def scrape_async(license_plate:str):
     async def get_token(session):
@@ -12,8 +12,8 @@ async def scrape_async(license_plate:str):
             content = await resp.text()
         source = fromstring(content)
         try:
-            token = source.xpath('/html/body/div[2]/div/div[1]/div[2]/form/input')[0].get("value")
-            url = source.xpath('/html/body/div[2]/div/div[1]/div[2]/form')[0].get("action")
+            token = source.xpath(XPATHS["other"]["token"])[0].get("value")
+            url = source.xpath(XPATHS["other"]["token_url"])[0].get("action")
             return token, url
         except (TypeError, KeyError):
             raise MissingToken("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
