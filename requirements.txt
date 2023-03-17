@@ -1,4 +1,5 @@
-lxml >= 4.9.1
-requests >= 2.28.1
+# Only used when users clone the repo and need to install packages
+lxml >= 4.9.2
+requests >= 2.28.2
 aiohttp >= 3.8.3
-pydantic >= 1.10.2
+pydantic >= 1.10.6
