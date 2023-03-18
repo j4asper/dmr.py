@@ -203,6 +203,9 @@ def test_validate_license_plate():
     is_license_plate = DMR().validate_license_plate("GGGGGGG")
     assert is_license_plate == True
     
+    is_license_plate = DMR("GGGGGGG").validate_license_plate()
+    assert is_license_plate == True
+    
     is_license_plate = DMR().validate_license_plate("ThisIsNotReal")
     assert is_license_plate == False
 
@@ -216,6 +219,17 @@ def get_data_for_comparison(license_plate, test_async:bool):
     sleep(3)
     
     return dmr_obj.raw_data, expected_data[license_plate]
+
+def get_object_for_comparison(license_plate, test_async:bool):
+    if test_async:
+        loop = asyncio.new_event_loop()
+        dmr_obj = loop.run_until_complete(DMR(license_plate).get_by_plate_async())
+    else:
+        dmr_obj = DMR(license_plate).get_by_plate()
+    
+    sleep(3)
+    
+    return dmr_obj, expected_data[license_plate]
 
 def test_invalid_license_plate():
     dmr_obj = DMR().get_by_plate(license_plate="GGGGGGG")
@@ -253,6 +267,40 @@ def test_normal_car():
     assert recieved["insurance"]["is_active"] == expected["insurance"]["is_active"]
     assert recieved["insurance"]["number"] == expected["insurance"]["number"]
 
+
+def test_dmr_object_normal_car():
+    dmr, expected = get_object_for_comparison("cw87553", False)
+    assert dmr.make == expected["make"]
+    assert dmr.model == expected["model"]
+    assert dmr.variant == expected["variant"]
+    assert dmr.vin == expected["vin"]
+    assert dmr.type == expected["type"]
+    assert dmr.last_update == expected["last_update"]
+    assert dmr.registration_number == expected["registration_number"]
+    assert dmr.first_registration == expected["first_registration"]
+    assert dmr.use == expected["use"]
+    assert dmr.vehicle_id == expected["vehicle_id"]
+    assert dmr.color == expected["color"]
+    assert dmr.model_year == expected["model_year"]
+    assert dmr.total_weight == expected["total_weight"]
+    assert dmr.vehicle_weight == expected["vehicle_weight"]
+    assert dmr.propulsion == expected["propulsion"]
+    assert dmr.tow_bar == expected["tow_bar"]
+    assert dmr.fuel_consumption == expected["fuel_consumption"]
+    assert dmr.cylinders == expected["cylinders"]
+    assert dmr.plugin_hybrid == expected["plugin_hybrid"]
+    assert dmr.electricity_consumption == expected["electricity_consumption"]
+    assert dmr.electric_range == expected["electric_range"]
+    assert dmr.battery_capacity == expected["battery_capacity"]
+    assert dmr.body_type == expected["body_type"]
+    assert dmr.particle_filter == expected["particle_filter"]
+    assert dmr.doors == expected["doors"]
+    assert dmr.insurance.company == expected["insurance"]["company"]
+    assert dmr.insurance.created == expected["insurance"]["created"]
+    assert dmr.insurance.is_active == expected["insurance"]["is_active"]
+    assert dmr.insurance.number == expected["insurance"]["number"]
+
+
 def test_electric_car():
     recieved, expected = get_data_for_comparison("ap43115", False)
     assert recieved["make"] == expected["make"]
@@ -285,6 +333,40 @@ def test_electric_car():
     assert recieved["insurance"]["is_active"] == expected["insurance"]["is_active"]
     assert recieved["insurance"]["number"] == expected["insurance"]["number"]
     
+
+def test_dmr_object_electric_car():
+    dmr, expected = get_object_for_comparison("cw87553", False)
+    assert dmr.make == expected["make"]
+    assert dmr.model == expected["model"]
+    assert dmr.variant == expected["variant"]
+    assert dmr.vin == expected["vin"]
+    assert dmr.type == expected["type"]
+    assert dmr.last_update == expected["last_update"]
+    assert dmr.registration_number == expected["registration_number"]
+    assert dmr.first_registration == expected["first_registration"]
+    assert dmr.use == expected["use"]
+    assert dmr.vehicle_id == expected["vehicle_id"]
+    assert dmr.color == expected["color"]
+    assert dmr.model_year == expected["model_year"]
+    assert dmr.total_weight == expected["total_weight"]
+    assert dmr.vehicle_weight == expected["vehicle_weight"]
+    assert dmr.propulsion == expected["propulsion"]
+    assert dmr.tow_bar == expected["tow_bar"]
+    assert dmr.fuel_consumption == expected["fuel_consumption"]
+    assert dmr.cylinders == expected["cylinders"]
+    assert dmr.plugin_hybrid == expected["plugin_hybrid"]
+    assert dmr.electricity_consumption == expected["electricity_consumption"]
+    assert dmr.electric_range == expected["electric_range"]
+    assert dmr.battery_capacity == expected["battery_capacity"]
+    assert dmr.body_type == expected["body_type"]
+    assert dmr.particle_filter == expected["particle_filter"]
+    assert dmr.doors == expected["doors"]
+    assert dmr.insurance.company == expected["insurance"]["company"]
+    assert dmr.insurance.created == expected["insurance"]["created"]
+    assert dmr.insurance.is_active == expected["insurance"]["is_active"]
+    assert dmr.insurance.number == expected["insurance"]["number"]
+
+
 def test_plugin_hybrid_car():
     recieved, expected = get_data_for_comparison("dd24506", False)
     assert recieved["make"] == expected["make"]
@@ -317,6 +399,40 @@ def test_plugin_hybrid_car():
     assert recieved["insurance"]["is_active"] == expected["insurance"]["is_active"]
     assert recieved["insurance"]["number"] == expected["insurance"]["number"]
 
+
+def test_dmr_object_plugin_hybrid_car():
+    dmr, expected = get_object_for_comparison("cw87553", False)
+    assert dmr.make == expected["make"]
+    assert dmr.model == expected["model"]
+    assert dmr.variant == expected["variant"]
+    assert dmr.vin == expected["vin"]
+    assert dmr.type == expected["type"]
+    assert dmr.last_update == expected["last_update"]
+    assert dmr.registration_number == expected["registration_number"]
+    assert dmr.first_registration == expected["first_registration"]
+    assert dmr.use == expected["use"]
+    assert dmr.vehicle_id == expected["vehicle_id"]
+    assert dmr.color == expected["color"]
+    assert dmr.model_year == expected["model_year"]
+    assert dmr.total_weight == expected["total_weight"]
+    assert dmr.vehicle_weight == expected["vehicle_weight"]
+    assert dmr.propulsion == expected["propulsion"]
+    assert dmr.tow_bar == expected["tow_bar"]
+    assert dmr.fuel_consumption == expected["fuel_consumption"]
+    assert dmr.cylinders == expected["cylinders"]
+    assert dmr.plugin_hybrid == expected["plugin_hybrid"]
+    assert dmr.electricity_consumption == expected["electricity_consumption"]
+    assert dmr.electric_range == expected["electric_range"]
+    assert dmr.battery_capacity == expected["battery_capacity"]
+    assert dmr.body_type == expected["body_type"]
+    assert dmr.particle_filter == expected["particle_filter"]
+    assert dmr.doors == expected["doors"]
+    assert dmr.insurance.company == expected["insurance"]["company"]
+    assert dmr.insurance.created == expected["insurance"]["created"]
+    assert dmr.insurance.is_active == expected["insurance"]["is_active"]
+    assert dmr.insurance.number == expected["insurance"]["number"]
+
+
 def test_hydrogen_car():
     recieved, expected = get_data_for_comparison("cy41511", True)
     assert recieved["make"] == expected["make"]
@@ -348,7 +464,41 @@ def test_hydrogen_car():
     assert recieved["insurance"]["created"] == expected["insurance"]["created"]
     assert recieved["insurance"]["is_active"] == expected["insurance"]["is_active"]
     assert recieved["insurance"]["number"] == expected["insurance"]["number"]
-    
+
+
+def test_dmr_object_hydrogen_car():
+    dmr, expected = get_object_for_comparison("cw87553", False)
+    assert dmr.make == expected["make"]
+    assert dmr.model == expected["model"]
+    assert dmr.variant == expected["variant"]
+    assert dmr.vin == expected["vin"]
+    assert dmr.type == expected["type"]
+    assert dmr.last_update == expected["last_update"]
+    assert dmr.registration_number == expected["registration_number"]
+    assert dmr.first_registration == expected["first_registration"]
+    assert dmr.use == expected["use"]
+    assert dmr.vehicle_id == expected["vehicle_id"]
+    assert dmr.color == expected["color"]
+    assert dmr.model_year == expected["model_year"]
+    assert dmr.total_weight == expected["total_weight"]
+    assert dmr.vehicle_weight == expected["vehicle_weight"]
+    assert dmr.propulsion == expected["propulsion"]
+    assert dmr.tow_bar == expected["tow_bar"]
+    assert dmr.fuel_consumption == expected["fuel_consumption"]
+    assert dmr.cylinders == expected["cylinders"]
+    assert dmr.plugin_hybrid == expected["plugin_hybrid"]
+    assert dmr.electricity_consumption == expected["electricity_consumption"]
+    assert dmr.electric_range == expected["electric_range"]
+    assert dmr.battery_capacity == expected["battery_capacity"]
+    assert dmr.body_type == expected["body_type"]
+    assert dmr.particle_filter == expected["particle_filter"]
+    assert dmr.doors == expected["doors"]
+    assert dmr.insurance.company == expected["insurance"]["company"]
+    assert dmr.insurance.created == expected["insurance"]["created"]
+    assert dmr.insurance.is_active == expected["insurance"]["is_active"]
+    assert dmr.insurance.number == expected["insurance"]["number"]
+
+
 def test_van():
     recieved, expected = get_data_for_comparison("ap22698", True)
     assert recieved["make"] == expected["make"]
@@ -381,6 +531,40 @@ def test_van():
     assert recieved["insurance"]["is_active"] == expected["insurance"]["is_active"]
     assert recieved["insurance"]["number"] == expected["insurance"]["number"]
 
+
+def test_dmr_object_van():
+    dmr, expected = get_object_for_comparison("cw87553", False)
+    assert dmr.make == expected["make"]
+    assert dmr.model == expected["model"]
+    assert dmr.variant == expected["variant"]
+    assert dmr.vin == expected["vin"]
+    assert dmr.type == expected["type"]
+    assert dmr.last_update == expected["last_update"]
+    assert dmr.registration_number == expected["registration_number"]
+    assert dmr.first_registration == expected["first_registration"]
+    assert dmr.use == expected["use"]
+    assert dmr.vehicle_id == expected["vehicle_id"]
+    assert dmr.color == expected["color"]
+    assert dmr.model_year == expected["model_year"]
+    assert dmr.total_weight == expected["total_weight"]
+    assert dmr.vehicle_weight == expected["vehicle_weight"]
+    assert dmr.propulsion == expected["propulsion"]
+    assert dmr.tow_bar == expected["tow_bar"]
+    assert dmr.fuel_consumption == expected["fuel_consumption"]
+    assert dmr.cylinders == expected["cylinders"]
+    assert dmr.plugin_hybrid == expected["plugin_hybrid"]
+    assert dmr.electricity_consumption == expected["electricity_consumption"]
+    assert dmr.electric_range == expected["electric_range"]
+    assert dmr.battery_capacity == expected["battery_capacity"]
+    assert dmr.body_type == expected["body_type"]
+    assert dmr.particle_filter == expected["particle_filter"]
+    assert dmr.doors == expected["doors"]
+    assert dmr.insurance.company == expected["insurance"]["company"]
+    assert dmr.insurance.created == expected["insurance"]["created"]
+    assert dmr.insurance.is_active == expected["insurance"]["is_active"]
+    assert dmr.insurance.number == expected["insurance"]["number"]
+
+
 def test_motorcycle():
     recieved, expected = get_data_for_comparison("ca20548", True)
     assert recieved["make"] == expected["make"]
@@ -412,3 +596,36 @@ def test_motorcycle():
     assert recieved["insurance"]["created"] == expected["insurance"]["created"]
     assert recieved["insurance"]["is_active"] == expected["insurance"]["is_active"]
     assert recieved["insurance"]["number"] == expected["insurance"]["number"]
+
+
+def test_dmr_object_motorcycle():
+    dmr, expected = get_object_for_comparison("cw87553", False)
+    assert dmr.make == expected["make"]
+    assert dmr.model == expected["model"]
+    assert dmr.variant == expected["variant"]
+    assert dmr.vin == expected["vin"]
+    assert dmr.type == expected["type"]
+    assert dmr.last_update == expected["last_update"]
+    assert dmr.registration_number == expected["registration_number"]
+    assert dmr.first_registration == expected["first_registration"]
+    assert dmr.use == expected["use"]
+    assert dmr.vehicle_id == expected["vehicle_id"]
+    assert dmr.color == expected["color"]
+    assert dmr.model_year == expected["model_year"]
+    assert dmr.total_weight == expected["total_weight"]
+    assert dmr.vehicle_weight == expected["vehicle_weight"]
+    assert dmr.propulsion == expected["propulsion"]
+    assert dmr.tow_bar == expected["tow_bar"]
+    assert dmr.fuel_consumption == expected["fuel_consumption"]
+    assert dmr.cylinders == expected["cylinders"]
+    assert dmr.plugin_hybrid == expected["plugin_hybrid"]
+    assert dmr.electricity_consumption == expected["electricity_consumption"]
+    assert dmr.electric_range == expected["electric_range"]
+    assert dmr.battery_capacity == expected["battery_capacity"]
+    assert dmr.body_type == expected["body_type"]
+    assert dmr.particle_filter == expected["particle_filter"]
+    assert dmr.doors == expected["doors"]
+    assert dmr.insurance.company == expected["insurance"]["company"]
+    assert dmr.insurance.created == expected["insurance"]["created"]
+    assert dmr.insurance.is_active == expected["insurance"]["is_active"]
+    assert dmr.insurance.number == expected["insurance"]["number"]
