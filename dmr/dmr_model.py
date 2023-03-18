@@ -37,16 +37,18 @@ class DMR:
         self._raw_data=data
         self._insurance = Insurance(**data["insurance"])
         return self
-        
-    def validate_license_plate(self, license_plate:str) -> bool:
+
+    def validate_license_plate(self, license_plate:str = None) -> bool:
         """Checks if the given string can be a license plate, this check is prior to the webscraping.
 
         Args:
             license_plate (str): The license plate to check
 
         Returns:
-            bool: Returns True if the string could be a license plate, or False if not.
+            bool: Returns True if the given license plate could be a license plate, or False if not.
         """
+        if license_plate is None:
+            license_plate = self.registration_number
         return len(license_plate) <= 7 and len(license_plate) >= 2 and license_plate.isalnum()
 
     def to_dict(self):
