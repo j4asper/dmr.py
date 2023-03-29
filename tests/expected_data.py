@@ -27,8 +27,8 @@ expected_data = {
         "body_type": None,
         "particle_filter": False,
         "doors": None,
-        "insurance": {"company": "GF-FORSIKRING A/S",
-                      "created": datetime(2022, 11, 8, 0, 0),
+        "insurance": {"company": "Topdanmark A/S",
+                      "created": datetime(2023, 3, 21, 0, 0),
                       "is_active": True,
                       "number": None
         }
