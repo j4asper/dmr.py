@@ -1,7 +1,6 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dmr.py?style=for-the-badge)](https://www.python.org/downloads/)
 [![PyPI](https://img.shields.io/pypi/v/dmr.py?style=for-the-badge)](https://pypi.org/project/dmr.py/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/dmr.py?style=for-the-badge)](https://pypi.org/project/dmr.py/)  
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/j4asper/dmr.py/python-package.yml?branch=main?style=for-the-badge)](https://github.com/j4asper/dmr.py/actions)
 [![GitHub](https://img.shields.io/github/license/j4asper/dmr.py?style=for-the-badge)](https://github.com/j4asper/dmr.py/blob/main/LICENSE)
 [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/jazper 'Click here to donate')  
 
