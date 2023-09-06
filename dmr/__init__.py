@@ -1,2 +1,4 @@
-from .dmr_model import DMR
-from .insurance_model import Insurance
+from .models.insurance import Insurance
+from .models.vehicle import Vehicle
+from .models.propulsion import Propulsion
+from .models.dmr import DMR
