@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from typing import Optional
 import datetime
 
+
 class Insurance(BaseModel):
     """
     The Insurance object holds the insurance information about the vehicle.
@@ -11,7 +12,7 @@ class Insurance(BaseModel):
 
         Insurance.company (str): The insurance provider.
 
-        Insurance.is_active (bool): Whether or not the insurance is active.
+        Insurance.is_active (bool): Whether the insurance is active.
 
         Insurance.number (str): The insurance number, typically returns None.
 
