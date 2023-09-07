@@ -28,7 +28,9 @@ Install current code from this repo, you will need to have git installed in orde
 python -m pip install git+https://github.com/j4asper/dmr.py
 ```
 
-## Example  
+## Example
+
+The library is very easy to use, these two examples might be the only methods you need to know.
 
 **Synchronously**
 
@@ -46,21 +48,19 @@ print("The vehicle make is:", vehicle.make)
 
 ---
 
-**Asynchronously**  
+**Asynchronously**
 
 ```python
 from dmr import DMR
 
 license_plate = "cw87553"
 
-# Get DMR object with data
+# Get Vehicle object with data
 vehicle = await DMR.get_by_plate_async(license_plate)
 
 print("The vehicle make is:", vehicle.make)
 # The vehicle make is: Suzuki
 ```
-
-**All attributes to the Vehicle object [can be viewed in the Wiki](https://github.com/j4asper/dmr.py/wiki/DMR-Attributes 'Click here to go to the Wiki')**
 
 ## Contributing:
 
