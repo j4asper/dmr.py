@@ -6,6 +6,10 @@ name: dmr test
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - '.gitignore'
+      - '.github/**'
+      - 'README.md'
   pull_request:
     branches: [ "main" ]
   schedule:
