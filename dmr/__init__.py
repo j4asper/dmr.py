@@ -4,4 +4,4 @@ from .models.propulsion_type import PropulsionType
 from .models.vehicle_type import VehicleType
 from .models.body_type import BodyType
 from .models.use_type import UseType
-from .models.dmr import DMR
+from dmr.dmr import DMR
