@@ -7,3 +7,8 @@ class PropulsionType(str, Enum):
     benzin = "Benzin"
     electric = "El"
     hydrogen = "Brint"
+    f_gas = "F-Gas"
+    petroleum = "Petroleum"
+    n_gas = "N-Gas"
+    methanol = "Metanol"
+    ethanol = "Ætanol"
