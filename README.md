@@ -64,7 +64,7 @@ print("The vehicle make is:", vehicle.make)
 
 ## Contributing:
 
-I would be more than happy if those who know how to make pull requests, contribute with code! Sometimes XPaths may not match with the ones on the [danish vehicle register](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk'), if that's the case, then you can either make a pull request with XPath fixes or make an issue saying that the XPaths are wrong, then i will fix it. XPaths are kept in [this file](https://github.com/j4asper/dmr.py/blob/main/dmr/utils/xpaths.py).  
+I would be more than happy if those who know how to make pull requests, contribute with code! Sometimes XPaths may not match with the ones on the [danish vehicle register](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk'), if that's the case, then you can either make a pull request with XPath fixes or make an issue saying that the XPaths are wrong, then I will fix it. XPaths are kept in [this file](https://github.com/j4asper/dmr.py/blob/main/dmr/utils/xpaths.py).  
 
 ## ToDo:
 
@@ -74,7 +74,7 @@ I would be more than happy if those who know how to make pull requests, contribu
 
 ## Issue we can't do anything about.
 
-If you have used this tool, you might notice that it is slow AF. That is probably due to our government using multiple 80-100 GB XML files as the databse for all vehicles in Denmark. It roughly takes about 3 seconds to do a lookup on the DMR site. Caching is __highly__ recommended!  
+If you have used this tool, you might notice that it's very slow. That is probably due to our government using multiple 80-100 GB XML files as the databse for all vehicles in Denmark. It roughly takes about 3 seconds to do a lookup on the DMR site. Caching is __highly__ recommended!  
 
 ## License Plates for testing:
 
