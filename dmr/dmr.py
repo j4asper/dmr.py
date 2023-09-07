@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Optional
-from .vehicle import Vehicle
-from re import search
-from ..utils import (
+from dmr.models.vehicle import Vehicle
+from re import search, RegexFlag
+from dmr.utils import (
     scrape_async,
     scrape,
     errors,
@@ -22,7 +22,7 @@ class DMR:
             bool: Returns True if the given license plate could be a license plate, or False if not.
         """
 
-        match = search(r"^[A-Z0-9]{2,7}$", license_plate)
+        match = search(r"^[A-Z0-9]{2,7}$", license_plate.upper())
         if match:
             return True
         else:
