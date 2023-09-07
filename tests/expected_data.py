@@ -2,6 +2,7 @@ from datetime import datetime
 from dmr.models.body_type import BodyType
 from dmr.models.vehicle_type import VehicleType
 from dmr.models.propulsion_type import PropulsionType
+from dmr.models.use_type import UseType
 
 
 expected_data = {
@@ -14,7 +15,7 @@ expected_data = {
         "last_update": datetime(2021, 1, 15, 0, 0),
         "registration_number": "CW87553",
         "first_registration": datetime(2005, 8, 22, 0, 0),
-        "use": "Privat personkørsel",
+        "use": UseType.private_driving,
         "vehicle_id": 1025401200519987,
         "color": None,
         "model_year": None,
@@ -46,7 +47,7 @@ expected_data = {
         "last_update": datetime(2014, 12, 1, 0, 0),
         "registration_number": "AP43115",
         "first_registration": datetime(2014, 12, 1, 0, 0),
-        "use": "Privat personkørsel",
+        "use": UseType.private_driving,
         "vehicle_id": 9000000000998775,
         "color": "Sort",
         "model_year": 2014,
@@ -78,7 +79,7 @@ expected_data = {
         "last_update": datetime(2021, 9, 16, 0, 0),
         "registration_number": "DD24506",
         "first_registration": datetime(2021, 9, 16, 0, 0),
-        "use": "Privat personkørsel",
+        "use": UseType.private_driving,
         "vehicle_id": 9000000004179000,
         "color": "Sort",
         "model_year": 2021,
@@ -110,7 +111,7 @@ expected_data = {
         "last_update": datetime(2021, 3, 9, 0, 0),
         "registration_number": "CY41511",
         "first_registration": datetime(2021, 3, 9, 0, 0),
-        "use": "Privat personkørsel",
+        "use": UseType.private_driving,
         "vehicle_id": 9000000003963744,
         "color": "Blå",
         "model_year": 2021,
@@ -142,7 +143,7 @@ expected_data = {
         "last_update": datetime(2014, 12, 23, 0, 0),
         "registration_number": "AP22698",
         "first_registration": datetime(2014, 12, 23, 0, 0),
-        "use": "Godstransport privat/erhverv",
+        "use": UseType.freight_transport_private_and_business,
         "vehicle_id": 9000000001018398,
         "color": None,
         "model_year": 2011,
@@ -174,7 +175,7 @@ expected_data = {
         "last_update": datetime(2022, 8, 12, 0, 0),
         "registration_number": "CA20548",
         "first_registration": datetime(2000, 8, 3, 0, 0),
-        "use": "Privat personkørsel",
+        "use": UseType.private_driving,
         "vehicle_id": 9000000002356860,
         "color": None,
         "model_year": None,
