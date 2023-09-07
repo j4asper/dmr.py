@@ -13,7 +13,10 @@ def get_value_from_xpath(source, xpath_string):
     
     if content.isnumeric():
         content = int(content)
-    
+
+    if isinstance(content, str):
+        content = content.strip()
+
     return content
 
 # Landing page when looking up a license plate, the page title is "1. Køretøj"
