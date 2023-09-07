@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from dmr.models.body_type import BodyType
 from dmr.models.vehicle_type import VehicleType
 from dmr.models.propulsion_type import PropulsionType
 
@@ -60,7 +60,7 @@ expected_data = {
         "electricity_consumption": 181.0,
         "electric_range": None,
         "battery_capacity": None,
-        "body_type": "Hatchback",
+        "body_type": BodyType.hatchback,
         "particle_filter": None,
         "doors": 5,
         "insurance": {"company": "GF-FORSIKRING A/S",
@@ -92,7 +92,7 @@ expected_data = {
         "electricity_consumption": 198.3,
         "electric_range": 52.0,
         "battery_capacity": 12.5,
-        "body_type": "Hatchback",
+        "body_type": BodyType.hatchback,
         "particle_filter": False,
         "doors": 5,
         "insurance": {"company": "ABC for Eir Försäkring AB",
@@ -124,7 +124,7 @@ expected_data = {
         "electricity_consumption": None,
         "electric_range": None,
         "battery_capacity": None,
-        "body_type": "Sedan  ",
+        "body_type": BodyType.sedan,
         "particle_filter": False,
         "doors": 4,
         "insurance": {"company": "GJENSIDIGE FORSIKRING",
