@@ -17,15 +17,15 @@ def test_dmr_object_plugin_hybrid_car():
 
 
 def test_dmr_object_hydrogen_car():
-    dmr, expected = get_object_for_comparison("cy41511", False)
+    dmr, expected = get_object_for_comparison("cy41511", True)
     validate_object(dmr, expected)
 
 
 def test_dmr_object_van():
-    dmr, expected = get_object_for_comparison("ap22698", False)
+    dmr, expected = get_object_for_comparison("ap22698", True)
     validate_object(dmr, expected)
 
 
 def test_dmr_object_motorcycle():
-    dmr, expected = get_object_for_comparison("ca20548", False)
+    dmr, expected = get_object_for_comparison("ca20548", True)
     validate_object(dmr, expected)
