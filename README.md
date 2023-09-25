@@ -8,7 +8,7 @@
 
 You will no longer need an exspensive API for danish license plate lookups with dmr.py, this tool scrapes the [danish vehicle registry](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk') directly and returns the data for you to use in your application. Be aware, that because of skat.dk's very slow database lookups, it could take about 3-4 seconds before getting a response.  
 
-## Installation:
+## Installation
 
 Install with pip
 
@@ -36,11 +36,13 @@ The library is very easy to use, these two examples might be the only methods yo
 
 ```python
 from dmr import DMR
+# Import models directly if needed:
+from dmr.models import *
 
 license_plate = "cw87553"
 
 # Get Vehicle object with data
-vehicle = DMR.get_by_plate(license_plate)
+vehicle: Vehicle = DMR.get_by_plate(license_plate)
 
 print("The vehicle make is:", vehicle.make)
 # The vehicle make is: Suzuki
@@ -62,20 +64,36 @@ print("The vehicle make is:", vehicle.make)
 # The vehicle make is: Suzuki
 ```
 
-## Contributing:
+**Models to dict/json**
+
+The model classes are [Pydantic BaseModels](https://docs.pydantic.dev/latest/api/base_model/) or Enums.
+
+```python
+from dmr import DMR
+
+license_plate = "cw87553"
+
+# Get Vehicle object with data
+vehicle = await DMR.get_by_plate_async(license_plate)
+
+print(vehicle.model_dump()) # .model_dump() returns a dict
+# {'make': 'Suzuki', 'model': 'Swift', 'variant': '1,5', ........}
+```
+
+## Contributing
 
 I would be more than happy if those who know how to make pull requests, contribute with code! Sometimes XPaths may not match with the ones on the [danish vehicle register](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk'), if that's the case, then you can either make a pull request with XPath fixes or make an issue saying that the XPaths are wrong, then I will fix it. XPaths are kept in [this file](https://github.com/j4asper/dmr.py/blob/main/dmr/utils/xpaths.py).  
 
-## ToDo:
+## ToDo
 
 - [x] Add documentation with all possible values.  
-- [ ] Scrape more parts of the DMR site to get even more data. 
+- [ ] Scrape more parts of the DMR site to get even more data.  
 - [x] Add more broad tests with different types of cars or bikes.  
 
-## Issue we can't do anything about.
+## Issue we can't do anything about
 
 If you have used this tool, you might notice that it's very slow. That is probably due to our government using multiple 80-100 GB XML files as the databse for all vehicles in Denmark. It roughly takes about 3 seconds to do a lookup on the DMR site. Caching is __highly__ recommended!  
 
-## License Plates for testing:
+## License Plates for testing
 
 You can use all the license plates listed in [**This file**](https://github.com/j4asper/dmr.py/blob/main/license_plates.txt 'Click here') for testing. If a license plate turns out to be invalid, please remove it and make a PR, or create an issue stating this.
