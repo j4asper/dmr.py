@@ -8,6 +8,18 @@
 
 You will no longer need an exspensive API for danish license plate lookups with dmr.py, this tool scrapes the [danish vehicle registry](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk') directly and returns the data for you to use in your application. Be aware, that because of skat.dk's very slow database lookups, it could take about 3-4 seconds before getting a response.  
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Examples](#examples)
+    - [Synchronous Get](#synchronous-get)
+    - [Asynchronous Get](#asynchronous-get)
+    - [Validating License Plates](#validating-license-plates)
+    - [Models to dict/json](#models-to-dictjson)
+- [Contributing](#contributing)
+- [Issue we can't do anything about](#issue-we-cant-do-anything-about)
+- [License Plates for testing](#license-plates-for-testing)
+
 ## Installation
 
 Install with pip
@@ -28,11 +40,13 @@ Install current code from this repo, you will need to have git installed in orde
 python -m pip install git+https://github.com/j4asper/dmr.py
 ```
 
-## Example
+## Examples
 
 The library is very easy to use, these two examples might be the only methods you need to know.
 
-**Synchronously**
+### Synchronous Get
+
+Get a [Vehicle object](/dmr/models/vehicle.py) synchronously.
 
 ```python
 from dmr import DMR
@@ -48,9 +62,9 @@ print("The vehicle make is:", vehicle.make)
 # The vehicle make is: Suzuki
 ```
 
----
+### Asynchronous Get
 
-**Asynchronously**
+Get a [Vehicle object](/dmr/models/vehicle.py) asynchronously.
 
 ```python
 from dmr import DMR
@@ -64,25 +78,47 @@ print("The vehicle make is:", vehicle.make)
 # The vehicle make is: Suzuki
 ```
 
-**Models to dict/json**
+### Validating License Plates
 
-The model classes are [Pydantic BaseModels](https://docs.pydantic.dev/latest/api/base_model/) or Enums.
+This is the easiest way to check if a license plate is in a valid format. This will only check if the format is valid, not if the license plate actually exists. This check is also used when using the get_by_plate() method.
 
 ```python
 from dmr import DMR
 
-license_plate = "cw87553"
+is_valid = DMR.validate_license_plate("cw87553")
+# True
 
-# Get Vehicle object with data
-vehicle = await DMR.get_by_plate_async(license_plate)
+is_valid = DMR.validate_license_plate("Very Cool")
+# False
 
-print(vehicle.model_dump()) # .model_dump() returns a dict
-# {'make': 'Suzuki', 'model': 'Swift', 'variant': '1,5', ........}
+is_valid = DMR.validate_license_plate("GGGGGGG")
+# True
+```
+
+### Models to dict/json
+
+The model classes are [Pydantic BaseModels](https://docs.pydantic.dev/latest/api/base_model/) or Enums. These are easily converted into a dict or a json string. I have listed 3 main methods of doing it.
+
+```python
+from dmr import DMR
+
+# Get Vehicle object
+vehicle = DMR.get_by_plate("cw87553")
+
+
+# If you want your model as a JSON string, this is the method to use. This is the equivalent of using json.dumps() on a dictionary.
+vehicle.model_dump_json()
+
+# Preferred method to use if you want sub models to be made into dicts as well
+vehicle.model_dump()
+
+# This is not recommeded, because the underlying Insurance object isn't parsed as a dictionary.
+dict(vehicle)
 ```
 
 ## Contributing
 
-I would be more than happy if those who know how to make pull requests, contribute with code! Sometimes XPaths may not match with the ones on the [danish vehicle register](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk'), if that's the case, then you can either make a pull request with XPath fixes or make an issue saying that the XPaths are wrong, then I will fix it. XPaths are kept in [this file](https://github.com/j4asper/dmr.py/blob/main/dmr/utils/xpaths.py).  
+I would be more than happy if those who know how to make pull requests, contribute with code! Sometimes XPaths may not match with the ones on the [danish vehicle registry](https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej 'motorregister.skat.dk'), if that's the case, then you can either make a pull request with XPath fixes or make an issue saying that the XPaths are wrong, then I will fix it. XPaths are kept in [this file](https://github.com/j4asper/dmr.py/blob/main/dmr/utils/xpaths.py).  
 
 ## ToDo
 
