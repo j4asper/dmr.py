@@ -22,7 +22,7 @@ class DMR:
             bool: Returns True if the given license plate could be a license plate, or False if not.
         """
 
-        match = search(r"^[A-Z0-9]{2,7}$", license_plate.upper())
+        match = search(r"^[A-ZÆØÅ0-9]{2,7}$", license_plate.upper())
         if match:
             return True
         else:
