@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Optional
-from dmr.models.vehicle import Vehicle
-from re import search, RegexFlag
+from dmr.models import Vehicle
+from re import search
 from dmr.utils import (
     scrape_async,
     scrape,
