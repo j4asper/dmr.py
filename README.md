@@ -11,28 +11,26 @@ You will no longer need an exspensive API for danish license plate lookups with 
 ## Table of Contents
 
 - [Installation](#installation)
+  - [From Pip](#from-pip)
+  - [From Source](#from-source)
 - [Examples](#examples)
-    - [Synchronous Get](#synchronous-get)
-    - [Asynchronous Get](#asynchronous-get)
-    - [Validating License Plates](#validating-license-plates)
-    - [Models to dict/json](#models-to-dictjson)
+  - [Synchronous Get](#synchronous-get)
+  - [Asynchronous Get](#asynchronous-get)
+  - [Validating License Plates](#validating-license-plates)
+  - [Models to dict/json](#models-to-dictjson)
 - [Contributing](#contributing)
 - [Issue we can't do anything about](#issue-we-cant-do-anything-about)
 - [License Plates for testing](#license-plates-for-testing)
 
 ## Installation
 
-Install with pip
+### From Pip
 
 ```console
 python -m pip install dmr.py
 ```  
 
-If you want to install the additional speedup packages, you can use the command below. These speedup packages is only for the async part of this library. If you are only using the synchronous part, then this is unnecessary.
-
-```console
-python -m pip install dmr.py[speed]
-```
+### From Source
 
 Install current code from this repo, you will need to have git installed in order to do this. The code in the repo might not match the current release, if you experience errors you should switch back the the latest release.
 
@@ -132,4 +130,6 @@ If you have used this tool, you might notice that it's very slow. That is probab
 
 ## License Plates for testing
 
-You can use all the license plates listed in [**This file**](https://github.com/j4asper/dmr.py/blob/main/license_plates.txt 'Click here') for testing. If a license plate turns out to be invalid, please remove it and make a PR, or create an issue stating this.
+This is a collectoin of license plates that you can use for testing.
+
+You can find the list [here](https://github.com/j4asper/dmr.py/blob/main/license_plates.txt). Most of the license plates in this file should be valid.
