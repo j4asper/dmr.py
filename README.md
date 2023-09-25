@@ -32,7 +32,7 @@ python -m pip install dmr.py
 
 ### From Source
 
-Install current code from this repo, you will need to have git installed in order to do this. The code in the repo might not match the current release, if you experience errors you should switch back the the latest release.
+Install current code from this repo, you will need to have [git](https://git-scm.com/downloads) installed in order to do this. The code in the repo might not match the current release, if you experience errors you should switch back the the latest release.
 
 ```console
 python -m pip install git+https://github.com/j4asper/dmr.py
