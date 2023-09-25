@@ -54,7 +54,7 @@ class DMR:
 
 
     @classmethod
-    async def get_by_plate_async(cls, license_plate: str):
+    async def get_by_plate_async(cls, license_plate: str) -> Optional[Vehicle]:
         """Get data from DMR asynchronously by license plate.
 
         Args:
