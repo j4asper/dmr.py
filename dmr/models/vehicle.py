@@ -8,6 +8,7 @@ from .insurance import Insurance
 from pydantic import (
     BaseModel,
     create_model,
+    ConfigDict,
 )
 
 
@@ -42,6 +43,7 @@ class Vehicle(BaseModel):
         particle_filter:           Whether the vehicle has a particle filter
         insurance:                 An insurance object
     """
+    model_config = ConfigDict(protected_namespaces=())
     make: str
     model: str
     variant: str
