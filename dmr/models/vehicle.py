@@ -67,4 +67,4 @@ class Vehicle(BaseModel):
     vehicle_id: int
     doors: Optional[int]
     particle_filter: Optional[bool]
-    insurance: create_model("Insurance", __base__=Insurance)
+    insurance: Optional[create_model("Insurance", __base__=Insurance)]
