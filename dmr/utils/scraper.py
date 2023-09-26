@@ -1,21 +1,19 @@
 from requests import Session
 from lxml.html import fromstring
+from typing import Optional
 from .headers import get_headers
-from .extract_data import *
-from .errors import MissingToken
+from .extract_data import page_1, page_2, page_4, get_token_and_url
 
-def get_token(session):
+
+def get_token(session) -> tuple[str, str]:
     """Get dmrFormToken"""
     resp = session.get("https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej", headers=get_headers(), allow_redirects=True)
     source = fromstring(resp.text)
-    try:
-        token = source.xpath(XPATHS["other"]["token"])[0].get("value")
-        url = source.xpath(XPATHS["other"]["token_url"])[0].get("action")
-        return token, url
-    except (TypeError, KeyError):
-        raise MissingToken("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
+    token, url = get_token_and_url(source)
+    return token, url
 
-def scrape(license_plate:str):
+
+def scrape(license_plate: str) -> Optional[dict]:
 
     with Session() as session:
         # Get dmrFormToken required to make site requests and get url to post data
@@ -45,7 +43,10 @@ def scrape(license_plate:str):
         
         # Page 4 scrape
         resp = session.get(str(resp.url) + "&_eventId=customPage&_pageIndex=3", headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url[:-16]}), allow_redirects=True)
-        source = fromstring(resp.text)
-        data.update(page_4(source))
+        if "Ingen forsikring" not in resp.text:
+            source = fromstring(resp.text)
+            data.update(page_4(source))
+        else:
+            data.update({"insurance": None})
 
     return data

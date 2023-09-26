@@ -1,23 +1,20 @@
 from aiohttp import ClientSession
 from lxml.html import fromstring
+from typing import Optional
 from .headers import get_headers
-from .extract_data import *
-from .errors import MissingToken
-from .xpaths import XPATHS
+from .extract_data import page_1, page_2, page_4, get_token_and_url
 
-async def get_token(session):
-        """Get dmrFormToken"""
-        async with session.get("https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej", headers=get_headers(), allow_redirects=True) as resp:
-            content = await resp.text()
-        source = fromstring(content)
-        try:
-            token = source.xpath(XPATHS["other"]["token"])[0].get("value")
-            url = source.xpath(XPATHS["other"]["token_url"])[0].get("action")
-            return token, url
-        except (TypeError, KeyError):
-            raise MissingToken("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
 
-async def scrape_async(license_plate:str):
+async def get_token(session) -> tuple[str, str]:
+    """Get dmrFormToken"""
+    async with session.get("https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej", headers=get_headers(), allow_redirects=True) as resp:
+        content = await resp.text()
+    source = fromstring(content)
+    token, url = get_token_and_url(source)
+    return token, url
+
+
+async def scrape_async(license_plate: str) -> Optional[dict]:
 
     async with ClientSession() as session:
         # Get dmrFormToken required to make site requests and get url to post data
@@ -52,7 +49,10 @@ async def scrape_async(license_plate:str):
         # Page 4 scrape
         async with session.get(str(resp.url) + "&_eventId=customPage&_pageIndex=3", headers=get_headers({"Referer":"https://motorregister.skat.dk" + new_url_without_last_16_chars}), allow_redirects=True) as resp:
             content = await resp.text()
-        source = fromstring(content)
-        data.update(page_4(source))
+        if "Ingen forsikring" not in content:
+            source = fromstring(content)
+            data.update(page_4(source))
+        else:
+            data.update({"insurance": None})
 
     return data
