@@ -18,6 +18,7 @@ You will no longer need an exspensive API for danish license plate lookups with 
   - [Asynchronous Get](#asynchronous-get)
   - [Validating License Plates](#validating-license-plates)
   - [Models to dict/json](#models-to-dictjson)
+  - [Unit Conversion](#unit-conversion)
 - [Contributing](#contributing)
 - [Issue we can't do anything about](#issue-we-cant-do-anything-about)
 - [License Plates for testing](#license-plates-for-testing)
@@ -112,6 +113,21 @@ vehicle.model_dump()
 
 # This is not recommeded, because the underlying Insurance object isn't parsed as a dictionary.
 dict(vehicle)
+```
+
+### Unit Conversion
+
+The default units used in this library is metric. A [Converter](/dmr/converter.py) class has been implemented, to make it easier to convert units to imperial and the other way around.
+
+```python
+from dmr import Converter
+
+range_in_km = 100
+
+range_in_miles = Converter.km_to_miles(range_in_km)
+
+print("Range in miles:", range_in_miles)
+# Range in miles: 62.14
 ```
 
 ## Contributing
