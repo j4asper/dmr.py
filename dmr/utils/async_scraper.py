@@ -1,5 +1,6 @@
 from aiohttp import ClientSession
 from lxml.html import fromstring
+from typing import Optional
 from .headers import get_headers
 from .extract_data import *
 from .errors import MissingToken
@@ -17,7 +18,7 @@ async def get_token(session):
         except (TypeError, KeyError):
             raise MissingToken("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
 
-async def scrape_async(license_plate:str):
+async def scrape_async(license_plate:str) -> Optional[dict]:
 
     async with ClientSession() as session:
         # Get dmrFormToken required to make site requests and get url to post data

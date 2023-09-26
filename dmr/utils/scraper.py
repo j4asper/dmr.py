@@ -1,5 +1,6 @@
 from requests import Session
 from lxml.html import fromstring
+from typing import Optional
 from .headers import get_headers
 from .extract_data import *
 from .errors import MissingToken
@@ -15,7 +16,7 @@ def get_token(session):
     except (TypeError, KeyError):
         raise MissingToken("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
 
-def scrape(license_plate:str):
+def scrape(license_plate:str) -> Optional[dict]:
 
     with Session() as session:
         # Get dmrFormToken required to make site requests and get url to post data
