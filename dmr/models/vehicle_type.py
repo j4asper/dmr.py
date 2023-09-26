@@ -9,4 +9,5 @@ class VehicleType(str, Enum):
     motorcycle = "Motorcykel"
     moped = "Lille knallert"
     large_moped = "Stor knallert"
+    trailer = "Påhængsvogn"
     bus = "Stor personbil"  # Busses are registered as "Stor personbil"
