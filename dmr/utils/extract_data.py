@@ -1,8 +1,11 @@
+from lxml.html import HtmlElement
 from .xpaths import XPATHS
 from datetime import datetime
+from .errors import MissingToken
 
 
-def get_value_from_xpath(source, xpath_string):
+def get_value_from_xpath(source: HtmlElement, xpath_string: str):
+    """Extracts the value from the XPath and turns their value into python understandable values"""
     content = source.xpath(xpath_string)[0].text_content()
     
     if content.startswith("-") or content == "Ukendt":
@@ -19,9 +22,19 @@ def get_value_from_xpath(source, xpath_string):
 
     return content
 
+
+def get_token_and_url(source: HtmlElement) -> tuple[str, str]:
+    try:
+        token = source.xpath(XPATHS["other"]["token"])[0].get("value")
+        url = source.xpath(XPATHS["other"]["token_url"])[0].get("action")
+        return token, url
+    except (TypeError, KeyError):
+        raise MissingToken("The scraper wasn't able to get a token from motorregister.skat.dk, the site may have changed.")
+
+
 # Landing page when looking up a license plate, the page title is "1. Køretøj"
-def page_1(source):
-    data = dict()
+def page_1(source: HtmlElement) -> dict:
+    data = {}
     make, model, variant = get_value_from_xpath(source, XPATHS["page_1"]["make_model_variant"]).split(",", 2)
     # Make make/model/variant names prettier
     data["make"] = make.strip().capitalize()
@@ -38,9 +51,10 @@ def page_1(source):
     data["model_year"] = get_value_from_xpath(source, XPATHS["page_1"]["model_year"])
     return data
 
+
 # page title is "2. Tekniske oplysninger"
-def page_2(source):
-    data = dict()
+def page_2(source: HtmlElement) -> dict:
+    data = {}
     data["total_weight"] = get_value_from_xpath(source, XPATHS["page_2"]["total_weight"])
     data["vehicle_weight"] = get_value_from_xpath(source, XPATHS["page_2"]["vehicle_weight"])
     data["propulsion"] = get_value_from_xpath(source, XPATHS["page_2"]["propulsion"])
@@ -64,7 +78,7 @@ def page_2(source):
 
 
 # Page 4: "Forsikring"
-def page_4(source):
+def page_4(source: HtmlElement) -> dict:
     data = {"insurance": {}}
     data["insurance"]["company"] = get_value_from_xpath(source, XPATHS["page_4"]["company"])
     data["insurance"]["is_active"] = True if get_value_from_xpath(source, XPATHS["page_4"]["is_active"]) == "Aktiv" else False
