@@ -1,11 +1,11 @@
 from aiohttp import ClientSession
 from lxml.html import fromstring
-from typing import Optional
+from typing import Optional, Tuple
 from .headers import get_headers
 from .extract_data import page_1, page_2, page_4, get_token_and_url
 
 
-async def get_token(session) -> tuple[str, str]:
+async def get_token(session) -> Tuple[str, str]:
     """Get dmrFormToken"""
     async with session.get("https://motorregister.skat.dk/dmr-kerne/koeretoejdetaljer/visKoeretoej", headers=get_headers(), allow_redirects=True) as resp:
         content = await resp.text()

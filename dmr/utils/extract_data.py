@@ -2,6 +2,7 @@ from lxml.html import HtmlElement
 from .xpaths import XPATHS
 from datetime import datetime
 from .errors import MissingToken
+from typing import Tuple
 
 
 def get_value_from_xpath(source: HtmlElement, xpath_string: str):
@@ -23,7 +24,7 @@ def get_value_from_xpath(source: HtmlElement, xpath_string: str):
     return content
 
 
-def get_token_and_url(source: HtmlElement) -> tuple[str, str]:
+def get_token_and_url(source: HtmlElement) -> Tuple[str, str]:
     try:
         token = source.xpath(XPATHS["other"]["token"])[0].get("value")
         url = source.xpath(XPATHS["other"]["token_url"])[0].get("action")
