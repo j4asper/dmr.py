@@ -160,8 +160,8 @@ expected_data = {
         "body_type": None,
         "particle_filter": True,
         "doors": 3,
-        "insurance": {"company": "TRYG FORSIKRING A/S",
-                      "created": datetime(2022, 8, 8, 0, 0),
+        "insurance": {"company": "Codan Forsikring for Alm. Brand Forsikring A/S",
+                      "created": datetime(2024, 5, 13, 0, 0),
                       "is_active": True,
                       "number": None
         }
