@@ -27,5 +27,5 @@ def test_dmr_object_van():
 
 
 def test_dmr_object_motorcycle():
-    dmr, expected = get_object_for_comparison("ca20548", True)
+    dmr, expected = get_object_for_comparison("aw85002", True)
     validate_object(dmr, expected)
