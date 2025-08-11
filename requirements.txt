@@ -1,5 +1,5 @@
 # Only used when users clone the repo and need to install packages
 lxml == 5.2.2
 requests == 2.32.3
-aiohttp == 3.9.5
+aiohttp == 3.12.15
 pydantic == 2.7.4
